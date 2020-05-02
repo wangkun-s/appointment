@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.appointment.modular.patient.dao.PatientMapper">
+
+    <sql id="baseField">
+        p_id,p_name,p_password,p_idcard,p_telephone,p_identity,p_email,p_sex
+    </sql>
+    <select id="selectIdCard" resultType="java.lang.Integer">
+        select count(*) from PATIENT where p_idcard = #{pidcard}
+    </select>
+
+    <select id="selectPatient" resultType="com.example.appointment.modular.patient.entity.Patient">
+        select * from PATIENT where p_idcard = #{pidcard}
+    </select>
+
+    <select id="selectPassword" resultType="com.example.appointment.modular.patient.entity.Patient">
+        select <include refid="baseField" /> from PATIENT where p_telephone = #{ptelephone}
+    </select>
+
+</mapper>

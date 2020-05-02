@@ -1,0 +1,27 @@
+server:
+  port: 8100
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:myorcl
+    username: wkun
+    password: orcl
+    driver-class-name: oracle.jdbc.OracleDriver
+
+logging:
+  level:
+    root: info
+    com.example.appointment: debug
+  file: log/system.log
+
+mconfig:
+  swagger-ui-open: true  #是否开启swagger接口文档
+
+mybatis-plus:
+  mapper-locations: classpath*:com/example/appointment/**/mapper/*.xml
+  global-config:
+      db-type: oracle
+      logic-delete-value: 1
+      logic-not-delete-value: 0
