@@ -2,6 +2,7 @@ package com.example.appointment.modular.patient.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.appointment.modular.patient.entity.Patient;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface PatientMapper extends BaseMapper<Patient> {
     Patient selectPassword(String ptelephone);
 
     Patient selectPatient(String pidcard);
+
+    int selectphone(String ptelephone);
 }

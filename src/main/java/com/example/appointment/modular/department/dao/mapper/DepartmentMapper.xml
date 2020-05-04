@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.appointment.modular.department.dao.DepartmentMapper">
+
+     <!--通用查询映射结果-->
+    <resultMap id="BaseResultMap" type="com.example.appointment.modular.department.entity.Department">
+        <id column="DE_ID" property="deId" />
+        <result column="DE_NAME" property="deName" />
+        <result column="DE_TIME" property="deTime" />
+        <result column="DE_DESCRIPTION" property="deDescription" />
+        <result column="DE_REMARK" property="deRemark" />
+        <collection property="doctor" javaType="ArrayList" ofType="com.example.appointment.modular.doctor.entity.Doctor">
+            <id column="D_ID" property="dId" />
+            <result column="D_NAME" property="dName" />
+            <result column="D_IDCARD" property="dIdcard" />
+            <result column="D_TELEPHONE" property="dTelephone" />
+            <result column="D_EMAIL" property="dEmail" />
+            <result column="D_SEX" property="dSex" />
+            <result column="D_IDENTITY" property="dIdentity" />
+            <result column="D_PASSWORD" property="dPassword" />
+            <result column="DE_ID" property="deId" />
+        </collection>
+    </resultMap>
+
+    <sql id="baseField">
+        DEPARTMENT.DE_ID,DE_NAME,DE_TIME,DE_DESCRIPTION,DE_REMARK
+    </sql>
+    <select id="selectinfo" resultMap="BaseResultMap">
+        select <include refid="baseField" /> ,D_ID,D_NAME,D_IDCARD,D_TELEPHONE,D_EMAIL,D_SEX,D_IDENTITY,D_PASSWORD
+        from DEPARTMENT left join DOCTOR
+        on DEPARTMENT.DE_ID = DOCTOR.DE_ID
+    </select>
+    <select id="selectkeshi" resultType="com.example.appointment.modular.department.entity.Department">
+        select <include refid="baseField" /> from DEPARTMENT
+    </select>
+</mapper>

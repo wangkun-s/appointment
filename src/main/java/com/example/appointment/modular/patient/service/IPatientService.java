@@ -2,6 +2,7 @@ package com.example.appointment.modular.patient.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.appointment.modular.patient.entity.Patient;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface IPatientService extends IService<Patient> {
     Patient selectPassword(String ptelephone);
 
     Patient selectPatient(String pidcard);
+
+    int selectphone(String ptelephone);
 }

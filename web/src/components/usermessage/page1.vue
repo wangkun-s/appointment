@@ -23,13 +23,16 @@
     data() {
       return {
         form: {
-          name: sessionStorage.getItem("pname"),
-          telephone: sessionStorage.getItem("ptelephone"),
+          name: '',
+          telephone: '',
           idcard: sessionStorage.getItem("pidcard"),
           email: '',
-          sex:sessionStorage.getItem("psex")
+          sex:''
         }
       }
+    },
+    mounted(){
+      this.userinfo();
     },
     methods: {
       validemail(){
@@ -38,7 +41,23 @@
         }else {
           this.email = ''
         }
-      }
+      },
+      userinfo(){
+        this.$axios({
+          method: "get",
+          url: "/api/patient/userinfo" ,
+          params:{
+            pidcard:sessionStorage.getItem("pidcard"),
+          },
+        }).then((res)=> {
+          console.log(res);
+          this.form.name = res.data.pname;
+          console.log(res.data.pname)
+          this.form.telephone = res.data.ptelephone;
+          this.form.email = res.data.pemail;
+          this.form.sex = res.data.psex;
+        })
+      },
     }
   }
 </script>

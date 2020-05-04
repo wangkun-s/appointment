@@ -90,36 +90,33 @@
         changeinfo(formName){
           this.$refs[formName].validate((valid) => {
             if (valid) {
-              // this.$axios({
-              //   method: "post",
-              //   url: "/api/patient/register" ,
-              //   data:{
-              //     pname:this.ruleForm.name,
-              //     pidcard:this.ruleForm.idcard,
-              //     ptelephone: this.ruleForm.telephone,
-              //     ppassword: this.ruleForm.password,
-              //     pemail:this.ruleForm.email,
-              //     pidentity: '1',
-              //     psex:this.ruleForm.sex,
-              //   },
-              // }).then((res)=>{
-              //   // console.log(res);
-              //   if(res.status==200){
-              //     this.$myMsg.notify({
-              //       content: "注册成功",
-              //       type: 'success',
-              //     })
-              //     setTimeout(() => {
-              //       this.$router.push('/login')
-              //     }, 1400)
-              //   }
-              // },error =>{
-              //   console.log(error.response.data.message)
-              //   this.$myMsg.notify({
-              //     content: error.response.data.message,
-              //     type: 'error',
-              //   })
-              // })
+              this.$axios({
+                method: "put",
+                url: "/api/patient/updatePassword" ,
+                params:{
+                  pidcard:sessionStorage.getItem("pidcard"),
+                  pid:sessionStorage.getItem("pid"),
+                  ptelephone: this.ruleForm.telephone,
+                  ppassword: this.ruleForm.password,
+                },
+              }).then((res)=>{
+                // console.log(res);
+                if(res.status==200){
+                  this.$myMsg.notify({
+                    content: "修改密码成功",
+                    type: 'success',
+                  })
+                  setTimeout(() => {
+                    this.$router.push('/home')
+                  }, 1400)
+                }
+              },error =>{
+                console.log(error.response.data.message)
+                this.$myMsg.notify({
+                  content: error.response.data.message,
+                  type: 'error',
+                })
+              })
             } else {
               console.log('error submit!!');
               return false;

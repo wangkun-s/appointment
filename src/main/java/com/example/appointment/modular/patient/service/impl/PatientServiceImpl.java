@@ -1,9 +1,11 @@
 package com.example.appointment.modular.patient.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.appointment.core.GlobalException;
 import com.example.appointment.modular.patient.dao.PatientMapper;
 import com.example.appointment.modular.patient.entity.Patient;
 import com.example.appointment.modular.patient.service.IPatientService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,4 +37,10 @@ public class PatientServiceImpl extends ServiceImpl<PatientMapper, Patient> impl
     public Patient selectPatient(String pidcard) {
         return patientMapper.selectPatient(pidcard);
     }
+
+    @Override
+    public int selectphone(String ptelephone) {
+        return patientMapper.selectphone(ptelephone);
+    }
+
 }

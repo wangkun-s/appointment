@@ -112,8 +112,8 @@
         </li>
 
         <li class="nav-item"  style="margin-top: -8px;" v-if="pstate">
-          <router-link :to="{name:'usermessage'}" class="nav-link" >
-            <img src="../../static/person.png" style="width: 40px;height: 40px">个人信息
+          <router-link :to="{name:'usermessage'}" class="nav-link" style="width: 200px;">
+            <img src="../../static/person.png" style="width: 40px;height: 40px">个人信息【欢迎您】
           </router-link>
         </li>
 
@@ -149,7 +149,7 @@
           };
         },
       methods:{
-      }
+      },
     }
 </script>
 
@@ -161,7 +161,7 @@
   }
   .background{
     background-image: url("../../static/lunbo00.jpg");
-    background-size: 1510px 290px;
+    background-size: 1519px 290px;
   }
   @font-face {
     font-family: 'webfont';

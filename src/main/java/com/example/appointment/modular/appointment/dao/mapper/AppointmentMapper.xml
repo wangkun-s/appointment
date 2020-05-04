@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.appointment.modular.appointment.dao.AppointmentMapper">
+
+    <sql id="baseField">
+        A_ID,A_START,A_END,A_DATE,A_DID,A_DEID,A_TELEPHONE,A_PID
+    </sql>
+
+    <select id="selectAppointment" resultType="com.example.appointment.modular.appointment.entity.Appointment">
+        select department.de_name,doctor.d_name,appointment.a_date,appointment.a_start,appointment.a_end
+        from appointment left join department on department.de_id = appointment.a_deid
+        left join doctor on appointment.a_did = doctor.d_id where A_PID=#{pid}
+    </select>
+    <select id="getAppointment" resultType="java.lang.Integer">
+        select count(*) from APPOINTMENT where A_PID=#{aPid} and A_DATE=#{aDate}
+    </select>
+</mapper>

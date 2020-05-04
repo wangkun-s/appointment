@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.appointment.modular.doctor.dao.DoctorMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.appointment.modular.doctor.entity.Doctor">
+        <id column="D_ID" property="dId" />
+        <result column="D_NAME" property="dName" />
+        <result column="D_IDCARD" property="dIdcard" />
+        <result column="D_TELEPHONE" property="dTelephone" />
+        <result column="D_EMAIL" property="dEmail" />
+        <result column="D_SEX" property="dSex" />
+        <result column="D_IDENTITY" property="dIdentity" />
+        <result column="D_PASSWORD" property="dPassword" />
+        <result column="D_DEID" property="dDeId" />
+    </resultMap>
+
+    <sql id="baseField">
+        D_ID,D_NAME,D_IDCARD,D_TELEPHONE,D_EMAIL,D_SEX,D_IDENTITY,D_PASSWORD,D_DEID
+    </sql>
+    <select id="selectdoctor" resultType="com.example.appointment.modular.doctor.entity.Doctor">
+        select <include refid="baseField"/> from DOCTOR where D_DEID=#{dDeId}
+    </select>
+
+</mapper>

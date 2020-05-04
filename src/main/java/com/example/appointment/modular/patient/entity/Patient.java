@@ -12,14 +12,14 @@ import lombok.Data;
  */
 @Data
 @TableName("PATIENT")
-@KeySequence(value = "SEQ_TESTPLUS_ID", clazz = Integer.class)
+@KeySequence(value = "SEQ_TESTPLUS_ID")
 @ApiModel(value="Patient对象", description="")
 public class Patient extends Model<Patient> {
 
     private static final long serialVersionUID = 1L;
     //此处添加@TableId注解
     @TableId(value = "p_id",type = IdType.INPUT)
-    private long pid;
+    private Long pid;
 
     @TableField(value = "p_name")
     private String pname;
@@ -34,7 +34,7 @@ public class Patient extends Model<Patient> {
     private String ptelephone;
 
     @TableField(value = "p_identity")
-    private int pidentity;
+    private String pidentity;
 
     @TableField(value = "p_email")
     private String pemail;

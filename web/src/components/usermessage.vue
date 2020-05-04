@@ -10,6 +10,7 @@
               <el-menu-item index="3"><img src="../../static/passwordmessage.png" style="width: 20px;height: 20px">修改密码</el-menu-item>
               <el-menu-item index="4"><img src="../../static/phonemessage.png" style="width: 20px;height: 20px">修改手机号</el-menu-item>
               <el-menu-item index="5"><img src="../../static/emailmessage.png" style="width: 20px;height: 20px">修改邮箱</el-menu-item>
+              <el-menu-item index="7"><img src="../../static/bingli.png" style="width: 25px;height: 25px">电子病历</el-menu-item>
               <el-menu-item index="6"><img src="../../static/quit.png" style="width: 20px;height: 20px">退出</el-menu-item>
             </el-menu>
           </div>
@@ -36,8 +37,8 @@
     name:'usermessage',
     data(){
       return {
-        // searchCriteria: '',
-        // breadcrumbItems: ['个人信息卡'],
+        searchCriteria: '',
+        breadcrumbItems: ['个人信息卡'],
       }
     },
     mounted(){
@@ -69,6 +70,10 @@
           case '5':
             this.$router.push('/page5')
             this.breadcrumbItems  = ['修改邮箱']
+            break;
+          case '7':
+            this.$router.push('/page7')
+            this.breadcrumbItems  = ['电子病历']
             break;
           case '6':
             this.$router.push('/page6')

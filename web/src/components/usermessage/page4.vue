@@ -2,10 +2,10 @@
   <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm"
            style="margin-left: 300px;margin-top: 100px">
     <el-form-item label="旧手机号" prop="jtelephone" >
-      <el-input v-model="ruleForm.name" placeholder="请输入旧手机号" style="width: 330px"></el-input>
+      <el-input v-model="ruleForm.jtelephone" placeholder="请输入旧手机号" style="width: 330px"></el-input>
     </el-form-item>
     <el-form-item label="新手机号" prop="xtelephone">
-      <el-input v-model="ruleForm.telephone" placeholder="请输入新手机号" :maxlength="11" show-word-limit clearable
+      <el-input v-model="ruleForm.xtelephone" placeholder="请输入新手机号" :maxlength="11" show-word-limit clearable
                 prefix-icon='el-icon-mobile'  style="width: 330px"></el-input>
       <el-button type="info" style="padding: 12px 8px;" plain :disabled="disabled" @click="sendcode" class="btns">{{btntxt}}</el-button>
     </el-form-item>
@@ -24,6 +24,7 @@
       data() {
         return {
           btntxt:"获取验证码",
+          disabled:false,
           visiable: true,
           visible:true,
           ruleForm: {
@@ -33,9 +34,9 @@
           },
           rules: {
             jtelephone: [{required: true, message: '请输入手机号', trigger: 'blur'},
-              {pattern: /^1(3|4|5|7|8|9)\d{9}$/, message: '手机号格式错误', trigger: 'blur'}],
+              {pattern: /^1(3|4|5|7|8|9)\d{9}$/, message: '手机号格式错误', trigger: 'change'}],
             xtelephone: [{required: true, message: '请输入手机号', trigger: 'blur'},
-              {pattern: /^1(3|4|5|7|8|9)\d{9}$/, message: '手机号格式错误', trigger: 'blur'}],
+              {pattern: /^1(3|4|5|7|8|9)\d{9}$/, message: '手机号格式错误', trigger: 'change'}],
             checkPhone: [{required: true, message: '请输入有效验证码', trigger: 'blur'}],
           }
         };
@@ -44,7 +45,32 @@
         changeinfo(formName){
           this.$refs[formName].validate((valid) => {
             if (valid) {
-
+              this.$axios({
+                method: "put",
+                url: "/api/patient/updateTelephone" ,
+                params:{
+                  pidcard:sessionStorage.getItem("pidcard"),
+                  pid:sessionStorage.getItem("pid"),
+                  jtelephone: this.ruleForm.jtelephone,
+                  xtelephone: this.ruleForm.xtelephone,
+                },
+              }).then((res)=>{
+                if(res.status==200){
+                  this.$myMsg.notify({
+                    content: "修改手机号成功",
+                    type: 'success',
+                  })
+                  setTimeout(() => {
+                    this.$router.push('/home')
+                  }, 1400)
+                }
+              },error =>{
+                console.log(error.response.data.message)
+                this.$myMsg.notify({
+                  content: error.response.data.message,
+                  type: 'error',
+                })
+              })
             } else {
               console.log('error submit!!');
               return false;

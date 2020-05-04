@@ -8,6 +8,9 @@
     <select id="selectIdCard" resultType="java.lang.Integer">
         select count(*) from PATIENT where p_idcard = #{pidcard}
     </select>
+    <select id="selectphone" resultType="java.lang.Integer">
+        select count(*) from PATIENT where p_telephone = #{ptelephone}
+    </select>
 
     <select id="selectPatient" resultType="com.example.appointment.modular.patient.entity.Patient">
         select * from PATIENT where p_idcard = #{pidcard}

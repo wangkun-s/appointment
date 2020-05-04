@@ -49,7 +49,7 @@ import page3 from '../components/usermessage/page3'
 import page4 from '../components/usermessage/page4'
 import page5 from '../components/usermessage/page5'
 import page6 from '../components/usermessage/page6'
-
+import page7 from '../components/usermessage/page7'
 
 Vue.use(Router);
 
@@ -130,6 +130,7 @@ export default new Router({
         {path: '/page4', name: 'page4', component: page4},
         {path: '/page5', name: 'page5', component: page5},
         {path: '/page6', name: 'page5', component: page6},
+        {path: '/page7', name: 'page7', component: page7},
       ]},
 
 

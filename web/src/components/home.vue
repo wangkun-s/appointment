@@ -1,63 +1,65 @@
 <template>
-  <div style="margin-bottom: 70px">
-    <div id="slider">
-    <div class="window" @mouseover="stop" @mouseleave="play">
-      <ul class="container" :style="containerStyle">
-        <li>
-          <img :src="sliders[sliders.length - 1].img" alt="">
-        </li>
-        <li v-for="(item, index) in sliders" :key="index">
-          <img :src="item.img" alt="">
-        </li>
-        <li>
-          <img :src="sliders[0].img" alt="">
-        </li>
-      </ul>
-      <ul class="direction">
-        <li class="left" @click="move(1200, 1, speed)">
-          <svg class="icon" width="30px" height="30.00px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M481.233 904c8.189 0 16.379-3.124 22.628-9.372 12.496-12.497 12.496-32.759 0-45.256L166.488 512l337.373-337.373c12.496-12.497 12.496-32.758 0-45.255-12.498-12.497-32.758-12.497-45.256 0l-360 360c-12.496 12.497-12.496 32.758 0 45.255l360 360c6.249 6.249 14.439 9.373 22.628 9.373z"  /></svg>
-        </li>
-        <li class="right" @click="move(1200, -1, speed)">
-          <svg class="icon" width="30px" height="30.00px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M557.179 904c-8.189 0-16.379-3.124-22.628-9.372-12.496-12.497-12.496-32.759 0-45.256L871.924 512 534.551 174.627c-12.496-12.497-12.496-32.758 0-45.255 12.498-12.497 32.758-12.497 45.256 0l360 360c12.496 12.497 12.496 32.758 0 45.255l-360 360c-6.249 6.249-14.439 9.373-22.628 9.373z"  /></svg>
-        </li>
-      </ul>
-      <ul class="dots">
-        <li v-for="(dot, i) in sliders" :key="i"
-            :class="{dotted: i === (currentIndex-1)}"
-            @click = jump(i+1)
-        >
-        </li>
-      </ul>
-    </div>
-  </div>
-    <div style="width: 1200px;margin: auto">
-      <div class="row">
-        <div style="margin-top: 40px" class="col-md-3">
-          <!--导航-->
-          <div class="list-group ">
-
-            <router-link class="list-group-item list-group-item-danger carditem" :to="{name:'surveyslink'}">
-              医院概况
-            </router-link>
-            <router-link  class="list-group-item list-group-item-primary carditem" :to="{name:'keshislink'}">
-              科室导诊
-            </router-link>
-            <router-link   class="list-group-item list-group-item-success carditem" :to="{name:'doctorslink'}" >
-              医生列表
-            </router-link>
-            <router-link  class="list-group-item list-group-item-warning carditem" :to="{name:'newsslink'}">
-              预约流程
-            </router-link>
-          </div>
+  <div>
+    <div style="margin-bottom: 70px">
+      <div id="slider">
+        <div class="window" @mouseover="stop" @mouseleave="play">
+          <ul class="container" :style="containerStyle">
+            <li>
+              <img :src="sliders[sliders.length - 1].img" alt="">
+            </li>
+            <li v-for="(item, index) in sliders" :key="index">
+              <img :src="item.img" alt="">
+            </li>
+            <li>
+              <img :src="sliders[0].img" alt="">
+            </li>
+          </ul>
+          <ul class="direction">
+            <li class="left" @click="move(1200, 1, speed)">
+              <svg class="icon" width="30px" height="30.00px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M481.233 904c8.189 0 16.379-3.124 22.628-9.372 12.496-12.497 12.496-32.759 0-45.256L166.488 512l337.373-337.373c12.496-12.497 12.496-32.758 0-45.255-12.498-12.497-32.758-12.497-45.256 0l-360 360c-12.496 12.497-12.496 32.758 0 45.255l360 360c6.249 6.249 14.439 9.373 22.628 9.373z"  /></svg>
+            </li>
+            <li class="right" @click="move(1200, -1, speed)">
+              <svg class="icon" width="30px" height="30.00px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M557.179 904c-8.189 0-16.379-3.124-22.628-9.372-12.496-12.497-12.496-32.759 0-45.256L871.924 512 534.551 174.627c-12.496-12.497-12.496-32.758 0-45.255 12.498-12.497 32.758-12.497 45.256 0l360 360c12.496 12.497 12.496 32.758 0 45.255l-360 360c-6.249 6.249-14.439 9.373-22.628 9.373z"  /></svg>
+            </li>
+          </ul>
+          <ul class="dots">
+            <li v-for="(dot, i) in sliders" :key="i"
+                :class="{dotted: i === (currentIndex-1)}"
+                @click = jump(i+1)
+            >
+            </li>
+          </ul>
         </div>
-        <div class="col-md-9">
-          <!--导航内容-->
-          <router-view style="margin-top: 45px ;margin-left: 30px" ></router-view>
+      </div>
+      <div style="width: 1200px;margin: auto">
+        <div class="row">
+          <div style="margin-top: 40px" class="col-md-3">
+            <!--导航-->
+            <div class="list-group ">
 
+              <router-link class="list-group-item list-group-item-danger carditem" :to="{name:'surveyslink'}">
+                医院概况
+              </router-link>
+              <router-link  class="list-group-item list-group-item-primary carditem" :to="{name:'keshislink'}">
+                科室导诊
+              </router-link>
+              <router-link   class="list-group-item list-group-item-success carditem" :to="{name:'doctorslink'}" >
+                医生列表
+              </router-link>
+              <router-link  class="list-group-item list-group-item-warning carditem" :to="{name:'newsslink'}">
+                预约流程
+              </router-link>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <!--导航内容-->
+            <router-view style="margin-top: 45px ;margin-left: 30px" ></router-view>
+
+          </div>
         </div>
       </div>
     </div>
-  </div>
+</div>
 
 </template>
 

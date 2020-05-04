@@ -80,11 +80,11 @@
           }
               sessionStorage.setItem("pstate", this.pstate);
               sessionStorage.setItem("pid", res.data.pid);
-              sessionStorage.setItem("pname", res.data.pname);
-              sessionStorage.setItem("ptelephone", res.data.ptelephone);
+              // sessionStorage.setItem("pname", res.data.pname);
+              // sessionStorage.setItem("ptelephone", res.data.ptelephone);
               sessionStorage.setItem("pidcard", res.data.pidcard);
-              sessionStorage.setItem("pemail", res.data.pemail);
-              sessionStorage.setItem("psex", res.data.psex);
+              // sessionStorage.setItem("pemail", res.data.pemail);
+              // sessionStorage.setItem("psex", res.data.psex);
             },error =>{
               console.log(error.response.data.message)
               this.$myMsg.notify({

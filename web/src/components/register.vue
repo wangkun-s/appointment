@@ -115,7 +115,7 @@
           checkPass: '',
           checkPhone:'',
           idcard:'',
-          identity:'',
+          identity: '1',
           sex:'',
           email:'',
         },
