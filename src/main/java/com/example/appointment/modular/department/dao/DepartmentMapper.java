@@ -18,4 +18,5 @@ public interface DepartmentMapper extends BaseMapper<Department> {
     List<Department> selectkeshi();
 
     List<Department> selectinfo();
+
 }

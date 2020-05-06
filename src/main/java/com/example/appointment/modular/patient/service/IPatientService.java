@@ -1,5 +1,6 @@
 package com.example.appointment.modular.patient.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.appointment.modular.patient.entity.Patient;
 import org.apache.ibatis.annotations.Param;
@@ -19,4 +20,6 @@ public interface IPatientService extends IService<Patient> {
     Patient selectPatient(String pidcard);
 
     int selectphone(String ptelephone);
+
+    IPage<Patient> selectAll(int current, int size);
 }

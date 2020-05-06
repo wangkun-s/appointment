@@ -1,7 +1,9 @@
 package com.example.appointment.modular.doctor.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.example.appointment.modular.doctor.entity.Doctor;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +18,10 @@ import java.util.List;
 public interface IDoctorService extends IService<Doctor> {
 
     List<Doctor> selectdoctor(Long dDeId);
+
+    Doctor selectAdmin(@Param("did") Long did, @Param("dpassword") String dpassword, @Param("didentity") String didentity);
+
+    IPage<Doctor> selectAll(int page, int size);
+
+    int updateStatus(Long did);
 }

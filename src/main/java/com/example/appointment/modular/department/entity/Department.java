@@ -36,7 +36,7 @@ public class Department extends Model<Department> {
     private String deName;
 
     @TableField("DE_TIME")
-    private LocalDateTime deTime;
+    private String deTime;
 
     @TableField("DE_DESCRIPTION")
     private String deDescription;

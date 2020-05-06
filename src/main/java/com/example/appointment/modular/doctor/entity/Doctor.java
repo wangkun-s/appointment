@@ -53,6 +53,15 @@ public class Doctor extends Model<Doctor> {
     @TableField("D_DEID")
     private Long dDeId;
 
+    @TableField("D_JOB")
+    private String dJob;
+
+    @TableField("D_STATUS")
+    private String dStatus;
+
+    @TableField("DE_NAME")
+    private String deName;
+
     @Override
     protected Serializable pkVal() {
         return this.dId;

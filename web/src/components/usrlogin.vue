@@ -50,7 +50,8 @@
         visible: true,
         pstate:true,
         rules: {
-          telephone: [{ required: true, message: '请输入手机号', trigger: 'blur' },],
+          telephone: [{ required: true, message: '请输入手机号', trigger: 'blur' },
+            {pattern: /^1(3|4|5|7|8|9)\d{9}$/, message: '手机号格式错误', trigger: 'change'}],
           password: [{ required: true, message: '请输入密码', trigger: 'change' }]
         }
       };
@@ -80,7 +81,7 @@
           }
               sessionStorage.setItem("pstate", this.pstate);
               sessionStorage.setItem("pid", res.data.pid);
-              // sessionStorage.setItem("pname", res.data.pname);
+              sessionStorage.setItem("identity", res.data.pidentity);
               // sessionStorage.setItem("ptelephone", res.data.ptelephone);
               sessionStorage.setItem("pidcard", res.data.pidcard);
               // sessionStorage.setItem("pemail", res.data.pemail);

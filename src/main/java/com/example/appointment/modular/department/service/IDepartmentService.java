@@ -18,4 +18,5 @@ public interface IDepartmentService extends IService<Department> {
     List<Department> selectkeshi();
 
     List<Department> selectinfo();
+
 }

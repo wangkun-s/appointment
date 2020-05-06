@@ -1,6 +1,6 @@
 <template >
-  <div id="FullOrderDetailBox">
-    <div style="border: 1px solid #99a9bf;width: 1000px;margin-left: 100px">
+  <div>
+    <div  id="FullOrderDetailBox" style="border: 1px solid #99a9bf;width: 1000px;margin-left: 100px">
       <div class="row" style="height: 50px" >
         <div class="col-md-12" style="text-align: center" >
           医好连锁口腔医院
@@ -68,9 +68,9 @@
           医嘱：
         </div>
       </div>
-      <el-button type="danger"
-                 @click="PrintClick">导出PDF</el-button>
     </div>
+    <el-button type="danger"
+               @click="PrintClick">导出或打印PDF</el-button>
   </div>
 </template>
 

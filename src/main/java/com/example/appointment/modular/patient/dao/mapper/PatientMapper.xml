@@ -3,7 +3,7 @@
 <mapper namespace="com.example.appointment.modular.patient.dao.PatientMapper">
 
     <sql id="baseField">
-        p_id,p_name,p_password,p_idcard,p_telephone,p_identity,p_email,p_sex
+        p_id,p_name,p_password,p_idcard,p_telephone,p_identity,p_email,p_sex,p_status
     </sql>
     <select id="selectIdCard" resultType="java.lang.Integer">
         select count(*) from PATIENT where p_idcard = #{pidcard}
@@ -20,4 +20,7 @@
         select <include refid="baseField" /> from PATIENT where p_telephone = #{ptelephone}
     </select>
 
+    <select id="selectAll" resultType="com.example.appointment.modular.patient.entity.Patient">
+        select *  from PATIENT where P_STATUS = 'true'
+    </select>
 </mapper>

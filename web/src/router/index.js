@@ -50,6 +50,18 @@ import page4 from '../components/usermessage/page4'
 import page5 from '../components/usermessage/page5'
 import page6 from '../components/usermessage/page6'
 import page7 from '../components/usermessage/page7'
+import page01 from '../components/adminmessage/page01'
+import page02 from '../components/adminmessage/page02'
+import page03 from '../components/adminmessage/page03'
+import page04 from '../components/adminmessage/page04'
+import page21 from '../components/doctormessage/page21'
+import page22 from '../components/doctormessage/page22'
+import page23 from '../components/doctormessage/page23'
+import page24 from '../components/doctormessage/page24'
+import page25 from '../components/doctormessage/page25'
+import page26 from '../components/doctormessage/page26'
+
+
 
 Vue.use(Router);
 
@@ -123,7 +135,7 @@ export default new Router({
     {path:'/mazui',name:'mazui',component:mazui},
     {path:'/zonghe',name:'zonghe',component:zonghe},
     {path:'/usermessage',name:'usermessage',component:usermessage},
-    {path: '/usermessage', name: 'usermessage', redirect:'/page1', component: usermessage, children:[
+    {path: '/usermessage', name: 'usermessage',component: usermessage, children:[
         {path: '/page1', name: 'page1', component: page1},
         {path: '/page2', name: 'page2', component: page2},
         {path: '/page3', name: 'page3', component: page3},
@@ -131,6 +143,16 @@ export default new Router({
         {path: '/page5', name: 'page5', component: page5},
         {path: '/page6', name: 'page5', component: page6},
         {path: '/page7', name: 'page7', component: page7},
+        {path: '/page01', name: 'page01', component: page01},
+        {path: '/page02', name: 'page02', component: page02},
+        {path: '/page03', name: 'page03', component: page03},
+        {path: '/page04', name: 'page04', component: page04},
+        {path: '/page21', name: 'page21', component: page21},
+        {path: '/page22', name: 'page22', component: page22},
+        {path: '/page23', name: 'page23', component: page23},
+        {path: '/page24', name: 'page24', component: page24},
+        {path: '/page25', name: 'page25', component: page25},
+        {path: '/page26', name: 'page26', component: page26},
       ]},
 
 

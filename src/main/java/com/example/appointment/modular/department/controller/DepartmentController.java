@@ -7,11 +7,7 @@ import com.example.appointment.modular.patient.entity.Patient;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,10 +35,22 @@ public class DepartmentController {
         return departmentList;
     }
 
+
     @GetMapping("/selectkeshi")
     @ApiOperation(value = "科室信息")
     public List<Department> selectkeshi(){
         List<Department> departmentList = iDepartmentService.selectkeshi();
         return departmentList;
+    }
+
+    @PostMapping("/addDepartment")
+    @ApiOperation(value = "创建科室")
+    public boolean addDepartment(@RequestBody Department department){
+        boolean flag = iDepartmentService.save(department);
+        if(flag == true){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

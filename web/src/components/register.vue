@@ -124,9 +124,9 @@
             { min: 1, max: 5, message: '长度在 1 到 5 个字符', trigger: 'blur' }],
           idcard: [{required: true, message: '请输入有效身份证号', trigger: 'blur'},
             {pattern: /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
-              message: '身份证号格式错误', trigger: 'blur'}],
+              message: '身份证号格式错误', trigger: 'change'}],
           telephone: [{required: true, message: '请输入手机号', trigger: 'blur'},
-            {pattern: /^1(3|4|5|7|8|9)\d{9}$/, message: '手机号格式错误', trigger: 'blur'}],
+            {pattern: /^1(3|4|5|7|8|9)\d{9}$/, message: '手机号格式错误', trigger: 'change'}],
           password: [{ required: true, validator: validatePass, trigger: 'blur' }],
           checkPass: [{ required: true, validator: validatePass2, trigger: 'blur' }],
           checkPhone: [{required: true, message: '请输入有效验证码', trigger: 'blur'}],
@@ -160,6 +160,7 @@
                 pemail:this.ruleForm.email,
                 pidentity: '1',
                 psex:this.ruleForm.sex,
+                pstatus:'true',
               },
             }).then((res)=>{
               console.log(res);

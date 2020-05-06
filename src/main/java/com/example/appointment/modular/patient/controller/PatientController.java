@@ -1,7 +1,9 @@
 package com.example.appointment.modular.patient.controller;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.example.appointment.core.GlobalException;
+import com.example.appointment.modular.doctor.entity.Doctor;
 import com.example.appointment.modular.patient.dao.PatientMapper;
 import com.example.appointment.modular.patient.entity.Patient;
 import com.example.appointment.modular.patient.service.IPatientService;
@@ -126,4 +128,11 @@ public class PatientController {
         }
     }
 
+    @GetMapping("/selectAll")
+    @ApiOperation(value = "查询患者所有信息")
+    public IPage<Patient> selectAll(
+            @RequestParam(value = "current", defaultValue = "1", required = false) int current,
+            @RequestParam(value = "size", defaultValue = "10", required = false) int size){
+        return iPatientService.selectAll(current,size);
+    }
 }

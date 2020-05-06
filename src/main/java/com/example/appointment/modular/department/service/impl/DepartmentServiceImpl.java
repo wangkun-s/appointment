@@ -32,4 +32,5 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
     public List<Department> selectinfo() {
         return departmentMapper.selectinfo();
     }
+
 }

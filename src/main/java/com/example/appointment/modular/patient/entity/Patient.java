@@ -42,6 +42,9 @@ public class Patient extends Model<Patient> {
     @TableField(value = "p_sex")
     private String psex;
 
+    @TableField(value = "p_status")
+    private String pstatus;
+
     @Override
     public String toString() {
         return "Patient{" +

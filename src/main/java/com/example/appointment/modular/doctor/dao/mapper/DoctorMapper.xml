@@ -13,13 +13,26 @@
         <result column="D_IDENTITY" property="dIdentity" />
         <result column="D_PASSWORD" property="dPassword" />
         <result column="D_DEID" property="dDeId" />
+        <result column="D_JOB" property="dJob" />
+        <result column="D_STATUS" property="dStatus" />
     </resultMap>
 
     <sql id="baseField">
-        D_ID,D_NAME,D_IDCARD,D_TELEPHONE,D_EMAIL,D_SEX,D_IDENTITY,D_PASSWORD,D_DEID
+        D_ID,D_NAME,D_IDCARD,D_TELEPHONE,D_EMAIL,D_SEX,D_IDENTITY,D_PASSWORD,D_DEID,D_JOB,D_STATUS
     </sql>
     <select id="selectdoctor" resultType="com.example.appointment.modular.doctor.entity.Doctor">
-        select <include refid="baseField"/> from DOCTOR where D_DEID=#{dDeId}
+        select <include refid="baseField"/> from DOCTOR where D_DEID=#{dDeId} and D_STATUS = 'true'
+    </select>
+    <select id="selectAdmin" resultType="com.example.appointment.modular.doctor.entity.Doctor">
+        select D_ID,D_NAME,D_PASSWORD,D_IDENTITY from DOCTOR where D_ID=#{did} and D_PASSWORD=#{dpassword}
+        and D_IDENTITY=#{didentity}
+    </select>
+    <select id="selectAll" resultType="com.example.appointment.modular.doctor.entity.Doctor">
+        select  <include refid="baseField"/>, DE_NAME from  DOCTOR,DEPARTMENT
+        where D_IDENTITY = '2' and D_STATUS = 'true' and DOCTOR.D_DEID =DEPARTMENT.DE_ID
     </select>
 
+    <update id="updateStatus" >
+        update DOCTOR set D_STATUS = 'false' where D_ID=#{did}
+    </update>
 </mapper>
