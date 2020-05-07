@@ -11,8 +11,6 @@ import axios from 'axios'
 import message from "@/components/myMsg/index"
 
 
-
-
 Vue.use(message.register);
 Vue.use(ElementUI)
 Vue.config.productionTip = false

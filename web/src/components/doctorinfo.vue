@@ -15,7 +15,7 @@
             <div class="col-md-12">
               <el-card class="box-card" style="padding: 20px">
                 <div>
-                  <el-popover v-for="(data,i) in tableData">
+                  <el-popover v-for="(data,i) in tableData" :key="i">
                   <el-button slot="reference">
                     <div class="text item" style="width: 200px;height: 200px">
                         <img :src="data.demail" style="height: 100px;width: 100px">
@@ -24,9 +24,9 @@
                         科室：{{data.de_name}}</br>
                         职称：{{data.djob}}</br>
                       </h5>
-                      <!--<router-link :to="{name:'appointmentmainlink'}">-->
-                      <!--<el-button type="primary" plain>立即预约</el-button>-->
-                      <!--</router-link>-->
+                      <router-link :to="{path:'/timelink',query:{eDid:data.did}}">
+                        <el-button type="primary" plain>查看时间表</el-button>
+                      </router-link>
                     </div>
                   </el-button>
                 </el-popover>

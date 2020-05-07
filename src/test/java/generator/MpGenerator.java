@@ -68,7 +68,7 @@ public class MpGenerator {
         dsc.setUsername("wkun");
         dsc.setPassword("orcl");
         dsc.setUrl("jdbc:oracle:thin:@localhost:1521:myorcl");
-       new MpGenerator("caseh",dsc,new String[] { "CASEH"},null).init().exec();
+       new MpGenerator("otherarea",dsc,new String[] { "OTHERAREA"},null).init().exec();
 
 	}
 	public void exec(){
@@ -101,7 +101,7 @@ public class MpGenerator {
             strategy.setTablePrefix(prefixs);// 此处可以修改为您的表前缀
         }
          strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-          strategy.setInclude(new String[] { "CASEH" }); // 需要生成的表
+          strategy.setInclude(new String[] { "OTHERAREA" }); // 需要生成的表
          // strategy.setInclude(new String[] { "SYS_PERMISSION","SYS_ROLE","SYS_ROLE_PERMISSION","SYS_USER_ROLE"}); // 需要生成的表
            if(this.tables != null){
                strategy.setInclude(tables);

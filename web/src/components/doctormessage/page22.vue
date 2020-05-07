@@ -2,11 +2,12 @@
     <el-tabs type="border-card" v-model="activename" @tab-click="handleClick">
       <el-tab-pane label="全部预约" name="appointment" style="height: 800px">
         <el-table :data="tableData" border style="width: 100%">
-          <el-table-column prop="pname" label="患者姓名" width="250"></el-table-column>
-          <el-table-column prop="de_name" label="科室" width="250"></el-table-column>
-          <el-table-column prop="adate" label="日期" width="250"></el-table-column>
-          <el-table-column prop="astart" label="开始时间" width="150"></el-table-column>
-          <el-table-column prop="aend" label="结束时间" width="170"></el-table-column>
+          <el-table-column prop="aid" label="预约号" width="220"></el-table-column>
+          <el-table-column prop="pname" label="患者姓名" width="220"></el-table-column>
+          <el-table-column prop="de_name" label="科室" width="220"></el-table-column>
+          <el-table-column prop="adate" label="日期" width="220"></el-table-column>
+          <el-table-column prop="astart" label="开始时间" width="120"></el-table-column>
+          <el-table-column prop="aend" label="结束时间" width="120"></el-table-column>
           <el-table-column label="操作" width="150">
             <template slot-scope="scope">
               <el-button @click="handleClick(scope.row)" type="text">填写病历</el-button>
@@ -80,11 +81,12 @@
 
       <el-tab-pane label="已完成就诊患者" name="patient" style="height: 800px">
         <el-table :data="tableData1" border style="width: 100%">
-          <el-table-column prop="pname" label="患者姓名" width="250"></el-table-column>
-          <el-table-column prop="de_name" label="科室" width="250"></el-table-column>
-          <el-table-column prop="adate" label="日期" width="250"></el-table-column>
-          <el-table-column prop="astart" label="开始时间" width="150"></el-table-column>
-          <el-table-column prop="aend" label="结束时间" width="170"></el-table-column>
+          <el-table-column prop="aid" label="预约号" width="220"></el-table-column>
+          <el-table-column prop="pname" label="患者姓名" width="220"></el-table-column>
+          <el-table-column prop="de_name" label="科室" width="220"></el-table-column>
+          <el-table-column prop="adate" label="日期" width="220"></el-table-column>
+          <el-table-column prop="astart" label="开始时间" width="120"></el-table-column>
+          <el-table-column prop="aend" label="结束时间" width="120"></el-table-column>
           <el-table-column label="操作" width="150">
             <template slot-scope="scope">
               <el-button @click="chakansubmit(scope.row)" type="text">查看病历</el-button>
@@ -254,6 +256,7 @@
           url: "/api/appointment/falsepatient",
           params: {aStatus:'false'}
         }).then((res)=> {
+          this.tableData1=[];
           for (let i = 0; i < res.data.length; i++) {
             this.tableData1.push(res.data[i])
           }

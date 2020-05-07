@@ -7,7 +7,7 @@
     </sql>
 
     <select id="selectAppointment" resultType="com.example.appointment.modular.appointment.entity.Appointment">
-        select department.de_name,doctor.d_name,appointment.a_date,appointment.a_start,appointment.a_end
+        select department.de_name,doctor.d_name,appointment.*
         from appointment left join department on department.de_id = appointment.a_deid
         left join doctor on appointment.a_did = doctor.d_id where A_PID=#{pid}
     </select>

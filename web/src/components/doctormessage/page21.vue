@@ -1,5 +1,5 @@
 <template>
-  <el-form ref="form" :model="form" label-width="200px" style="margin-top: 70px;margin-left: 80px">
+  <el-form ref="form" :model="form" label-width="200px" style="margin-top: 70px;margin-left: 80px;">
     <el-form-item label="姓名：" style="width: 200px;">
       <el-input v-model="form.name" disabled style="width: 700px"></el-input>
     </el-form-item>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.appointment.modular.exchange.dao.ExchangeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.appointment.modular.exchange.entity.Exchange">
+        <id column="E_ID" property="eId" />
+        <result column="E_DID" property="eDid" />
+        <result column="E_DATE" property="eDate" />
+        <result column="E_START" property="eStart" />
+        <result column="E_END" property="eEnd" />
+        <result column="E_REGION" property="eRegion" />
+    </resultMap>
+
+    <select id="selectexchanges" resultType="java.lang.Integer">
+    select count(*) from APPOINTMENT
+    where  APPOINTMENT.A_START = #{eStart} and APPOINTMENT.A_END = #{eEnd}
+    and APPOINTMENT.A_DATE = #{eDate} and APPOINTMENT.A_DID = #{eDid}
+    </select>
+
+    <select id="getexchange" resultType="com.example.appointment.modular.exchange.entity.Exchange">
+        select distinct * from EXCHANGE where EXCHANGE.E_DID= #{eDid} and (EXCHANGE.E_DATE = #{eDate1} or
+        EXCHANGE.E_DATE = #{eDate2} or EXCHANGE.E_DATE = #{eDate3} or EXCHANGE.E_DATE = #{eDate4}
+        or EXCHANGE.E_DATE = #{eDate5} or EXCHANGE.E_DATE = #{eDate6} or EXCHANGE.E_DATE = #{eDate7})
+        order by EXCHANGE.E_DATE ASC
+    </select>
+</mapper>

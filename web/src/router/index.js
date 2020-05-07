@@ -60,6 +60,7 @@ import page23 from '../components/doctormessage/page23'
 import page24 from '../components/doctormessage/page24'
 import page25 from '../components/doctormessage/page25'
 import page26 from '../components/doctormessage/page26'
+import time from '../components/time'
 
 
 
@@ -154,6 +155,7 @@ export default new Router({
         {path: '/page25', name: 'page25', component: page25},
         {path: '/page26', name: 'page26', component: page26},
       ]},
+    {path:'/timelink',name:'timelink',component:time},
 
 
     {path: '*', redirect: '/'}, //如果用户输错路由，默认跳入主页

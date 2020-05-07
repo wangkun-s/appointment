@@ -49,54 +49,16 @@
         </div>
       </div>
       <br/>
-      <div>
-        <p style="font-weight: bold;font-size: 25px;color: #08afaf">专科排班表</p>
-        <div>
-          <full-calendar
-            :events="events"
-            :config="config"
-            class="test-fc"
-            locale="fr"
-            @event-drop="eventDrop">
-          </full-calendar>
-        </div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-  import { FullCalendar } from 'vue-full-calendar';
-  import 'fullcalendar/dist/fullcalendar.css';
+
   export default {
     name: 'zhongzhi',
-    components: {FullCalendar},
     data() {
       return {
-        config: {
-          firstDay: 1,
-          locale: 'zh-cn',
-          defaultView: 'agendaWeek',
-
-          height: 'auto',
-          header: {
-            left: 'title',
-            center: '',
-            right: 'prev,today,next',
-          },
-          /* agenda 模式 */
-          allDaySlot: false,
-          slotLabelFormat: 'H:mm', // axisFormat 'H(:mm)'
-          slotLabelInterval: 1,
-          slotDuration: '00:30:00',
-          minTime: '8:00',
-          maxTime: '20:00',
-          editable: true,
-          /* 设置按钮文字 */
-          buttonText: {
-            today: '今天',
-          }
-        }
       }
     },
     mounted(){

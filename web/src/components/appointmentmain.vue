@@ -27,10 +27,11 @@
                 <el-option v-for="(item,index) in list" :key="index" @click="fn(index)" :class="{active:ide ==index}" :value="item"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="预约时间" prop="seleTime">
-              <el-select v-model="ruleForm.seleTime" placeholder="请选择预约日期" style="width: 330px" >
-                <el-option v-for="item in stateList" :value="item.value" :key="item.value" :label="item.label"></el-option>
-              </el-select>
+            <el-form-item label="预约时间" :rules="[{ required: true, message: '请选择预约时间', trigger: 'blur' }]" >
+              <el-time-select placeholder="起始时间" v-model="startTime" :picker-options="{start: '08:00',step: '01:00',end: '18:00'}">
+              </el-time-select>
+              <el-time-select placeholder="结束时间" v-model="endTime" :picker-options="{start: '08:00',step: '01:00',end: '18:00',minTime: startTime}">
+              </el-time-select>
             </el-form-item>
             <el-form-item label="手机号" prop="ptelephone">
               <el-input v-model="ruleForm.ptelephone" placeholder="请输入手机号" :maxlength="11" show-word-limit clearable
@@ -52,6 +53,9 @@
   </div>
 </template>
 
+<script src="//unpkg.com/vue/dist/vue.js"></script>
+<script src="//unpkg.com/element-ui@2.13.1/lib/index.js"></script>
+
 <script>
     export default {
         name: "appointmentmain",
@@ -62,6 +66,8 @@
           days: [],
           btntxt:"获取验证码",
           disabled:false,
+          startTime: '',
+          endTime: '',
           ruleForm: {
             seleDate: '',
             seleTime:'',
@@ -70,10 +76,6 @@
             ptelephone:'',
             checkPhone:'',
           },
-          stateList: [{value: '8:00am-10:00am', label: '8:00am-10:00am'},
-            {value: '10:00am-12:00am', label: '10:00am-12:00am'},
-            {value: '1:00pm-3:00pm', label: '1:00pm-3:00pm'},
-            {value: '3:00pm-5:00pm', label: '3:00pm-5:00pm'}],
           doctorList:[],
           keshiList:[],
           rules: {
@@ -83,7 +85,6 @@
             checkPhone: [{required: true, message: '请输入有效验证码', trigger: 'blur'}],
             seleDate: [{required: true, message: '请选择预约日期', trigger: 'change'}],
             doctor: [{required: true, message: '请选择医生', trigger: 'blur'}],
-            seleTime: [{required: true, message: '请选择预约时间', trigger: 'change'}],
           }
         };
       },
@@ -137,9 +138,12 @@
           })
         },
         submitForm(formName) {
+          console.log(this.startTime,this.endTime)
+          console.log(typeof (this.ruleForm.seleDate))
+          // console.log(  this.fun_date(7));
           this.$refs[formName].validate((valid) => {
             if (valid) {
-              if(sessionStorage.getItem("state") === "true"){
+              if(sessionStorage.getItem("state") === "true"&& sessionStorage.getItem("identiey") === "1"){
                 var time =this.ipaddrArray();
                 this.$axios({
                   method: "post",
@@ -148,8 +152,8 @@
                     adate: this.ruleForm.seleDate,
                     adeid: this.ruleForm.keshi,
                     adid: this.ruleForm.doctor,
-                    aend: time[1],
-                    astart: time[0],
+                    aend: this.endTime,
+                    astart: this.startTime,
                     atelephone: this.ruleForm.ptelephone,
                     apid:sessionStorage.getItem("id"),
                     astatus:"true"

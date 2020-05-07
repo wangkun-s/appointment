@@ -223,61 +223,15 @@
         </div>
       </div>
       <br/>
-      <div>
-        <p style="font-weight: bold;font-size: 25px;color: #08afaf">专科排班表</p>
-        <div>
-          <full-calendar
-            :events="events"
-            :config="config"
-            class="test-fc"
-            locale="fr"
-            @event-drop="eventDrop">
-          </full-calendar>
-        </div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-  import { FullCalendar } from 'vue-full-calendar';
-  import 'fullcalendar/dist/fullcalendar.css';
   export default {
     name: 'kouqiangxiufu',
-    components: {FullCalendar},
     data() {
       return {
-        events: [
-          {title: '赵子龙', start: '2019-07-01T12:30', end: '2019-07-01T13:30',},
-          {title: '刘备', start: '2019-07-02T10:20', end: '2019-07-02T11:00', color: 'red'},
-          {title: '关羽', start: '2019-07-03T14:20', end: '2019-07-03T15:20', backgroundColor: 'green',},
-          {title: '张飞', start: '2019-07-04T16:00', end: '2019-07-04T17:00', color: 'orange', editable: true},
-          {title: '曹操', start: '2019-07-05T18:40', end: '2019-07-05T19:20',}
-        ],
-        config: {
-          firstDay: 1,
-          locale: 'zh-cn',
-          defaultView: 'agendaWeek',
-
-          height: 'auto',
-          header: {
-            left: 'title',
-            center: '',
-            right: 'prev,today,next',
-          },
-          /* agenda 模式 */
-          allDaySlot: false,
-          slotLabelFormat: 'H:mm', // axisFormat 'H(:mm)'
-          slotLabelInterval: 1,
-          slotDuration: '00:30:00',
-          minTime: '8:00',
-          maxTime: '20:00',
-          editable: true,
-          /* 设置按钮文字 */
-          buttonText: {
-            today: '今天',
-          }
-        }
       }
     },
     mounted(){
