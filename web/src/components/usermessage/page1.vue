@@ -25,7 +25,7 @@
         form: {
           name: '',
           telephone: '',
-          idcard: sessionStorage.getItem("pidcard"),
+          idcard: sessionStorage.getItem("idcard"),
           email: '',
           sex:''
         }
@@ -35,19 +35,19 @@
       this.userinfo();
     },
     methods: {
-      validemail(){
-        if(sessionStorage.getItem("pemail")!=undefined||sessionStorage.getItem("pemail")!=null){
-          this.email = sessionStorage.getItem("pemail")
-        }else {
-          this.email = ''
-        }
-      },
+      // validemail(){
+      //   if(this.form.email!==undefined||this.form.email!==null){
+      //     this.form.email = this.form.email
+      //   }else {
+      //     this.form.email = ''
+      //   }
+      // },
       userinfo(){
         this.$axios({
           method: "get",
           url: "/api/patient/userinfo" ,
           params:{
-            pidcard:sessionStorage.getItem("pidcard"),
+            pidcard:sessionStorage.getItem("idcard"),
           },
         }).then((res)=> {
           console.log(res);

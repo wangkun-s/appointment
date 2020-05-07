@@ -14,4 +14,30 @@
     <select id="getAppointment" resultType="java.lang.Integer">
         select count(*) from APPOINTMENT where A_PID=#{aPid} and A_DATE=#{aDate}
     </select>
+
+    <select id="doctorAppointment" resultType="com.example.appointment.modular.appointment.entity.Appointment">
+        select appointment.*,department.de_name,patient.p_name from appointment,
+        doctor, department, patient where doctor.d_id = appointment.a_did and
+        appointment.a_deid = department.de_id and appointment.a_pid = patient.p_id
+        and doctor.d_id = #{did} and APPOINTMENT.A_STATUS = 'true' order by appointment.a_date DESC
+    </select>
+
+    <select id="appointmentinfo" resultType="com.example.appointment.modular.appointment.entity.Appointment">
+        select PATIENT.P_IDCARD ,PATIENT.P_NAME,APPOINTMENT.*,PATIENT.P_SEX,DEPARTMENT.DE_NAME,
+        DOCTOR.D_NAME from appointment,
+        doctor, department, patient where doctor.d_id = appointment.a_did and
+        appointment.a_deid = department.de_id and appointment.a_pid = patient.p_id
+        and PATIENT.p_id = #{pid} and APPOINTMENT.A_ID = #{aid} and APPOINTMENT.A_STATUS = 'true'
+    </select>
+
+    <update id="updateStatus" >
+        update APPOINTMENT set a_status = 'false' where A_ID = #{aid}
+    </update>
+
+    <select id="falsepatient" resultType="com.example.appointment.modular.appointment.entity.Appointment">
+                select appointment.*,department.de_name,patient.p_name from appointment,
+        doctor, department, patient where doctor.d_id = appointment.a_did and
+        appointment.a_deid = department.de_id and appointment.a_pid = patient.p_id
+        and APPOINTMENT.A_STATUS = #{aStatus}
+    </select>
 </mapper>

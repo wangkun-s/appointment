@@ -47,6 +47,18 @@ public class Appointment extends Model<Appointment> {
     @TableField(exist = false)
     private String dName;
 
+    @TableField(exist = false)
+    private String pName;
+
+    @TableField(exist = false)
+    private String pIdcard;
+
+    @TableField(exist = false)
+    private String pSex;
+
+    @TableField(value = "A_STATUS")
+    private String aStatus;
+
     @Override
     public String toString() {
         return "Appointment{" +

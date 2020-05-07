@@ -24,7 +24,7 @@
         select <include refid="baseField"/> from DOCTOR where D_DEID=#{dDeId} and D_STATUS = 'true'
     </select>
     <select id="selectAdmin" resultType="com.example.appointment.modular.doctor.entity.Doctor">
-        select D_ID,D_NAME,D_PASSWORD,D_IDENTITY from DOCTOR where D_ID=#{did} and D_PASSWORD=#{dpassword}
+        select D_ID,D_NAME,D_PASSWORD,D_IDENTITY,D_IDCARD from DOCTOR where D_ID=#{did} and D_PASSWORD=#{dpassword}
         and D_IDENTITY=#{didentity}
     </select>
     <select id="selectAll" resultType="com.example.appointment.modular.doctor.entity.Doctor">
@@ -35,4 +35,15 @@
     <update id="updateStatus" >
         update DOCTOR set D_STATUS = 'false' where D_ID=#{did}
     </update>
+
+    <select id="doctorinfo" resultType="com.example.appointment.modular.doctor.entity.Doctor">
+        select <include refid="baseField"/>, DE_NAME from  DOCTOR,DEPARTMENT
+        where D_ID= #{did} and DOCTOR.D_DEID = DEPARTMENT.DE_ID
+    </select>
+
+    <select id="doctorsinfo" resultType="com.example.appointment.modular.doctor.entity.Doctor">
+        select DOCTOR.*,DEPARTMENT.DE_NAME from DEPARTMENT,DOCTOR
+        where DOCTOR.D_DEID = DEPARTMENT.DE_ID
+    </select>
+
 </mapper>

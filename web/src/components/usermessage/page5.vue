@@ -32,7 +32,7 @@
           },
           rules: {
             ptelephone: [{required: true, message: '请输入手机号', trigger: 'blur'},
-              {pattern: /^1(3|4|5|7|8|9)\d{9}$/, message: '手机号格式错误', trigger: 'blur'}],
+              {pattern: /^1(3|4|5|7|8|9)\d{9}$/, message: '手机号格式错误', trigger: 'change'}],
             pemail: [{ message: '请输入邮箱地址', trigger: 'blur' },
               { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }],
             checkPhone: [{required: true, message: '请输入有效验证码', trigger: 'blur'}],
@@ -47,7 +47,7 @@
                 method: "put",
                 url: "/api/patient/updateEmail" ,
                 params:{
-                  pidcard:sessionStorage.getItem("pidcard"),
+                  pidcard:sessionStorage.getItem("idcard"),
                   pid:sessionStorage.getItem("pid"),
                   ptelephone: this.ruleForm.ptelephone,
                   pemail: this.ruleForm.pemail,

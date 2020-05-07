@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.appointment.modular.caseh.dao.CasehMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.appointment.modular.caseh.entity.Caseh">
+        <id column="C_ID" property="cId" />
+        <result column="C_PSEX" property="cPsex" />
+        <result column="C_PIDCARD" property="cPidcard" />
+        <result column="C_PTELEPHONE" property="cPtelephone" />
+        <result column="C_DENAME" property="cDename" />
+        <result column="C_DNAME" property="cDname" />
+        <result column="C_ADATE" property="cAdate" />
+        <result column="C_TYPE" property="cType" />
+        <result column="C_ZHUSU" property="cZhusu" />
+        <result column="C_SHOUFEI" property="cShoufei" />
+        <result column="C_YIZHU" property="cYizhu" />
+        <result column="C_AID" property="cAid" />
+        <result column="C_DEID" property="cDeid" />
+        <result column="C_DID" property="cDid" />
+        <result column="C_PID" property="cPid" />
+    </resultMap>
+
+
+    <select id="watchbingli" resultType="com.example.appointment.modular.caseh.entity.Caseh">
+        select * from CASEH where C_AID=#{caid}
+    </select>
+</mapper>

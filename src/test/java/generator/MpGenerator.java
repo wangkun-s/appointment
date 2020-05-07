@@ -68,7 +68,7 @@ public class MpGenerator {
         dsc.setUsername("wkun");
         dsc.setPassword("orcl");
         dsc.setUrl("jdbc:oracle:thin:@localhost:1521:myorcl");
-       new MpGenerator("PATIENT",dsc,new String[] { "PATIENT"},null).init().exec();
+       new MpGenerator("caseh",dsc,new String[] { "CASEH"},null).init().exec();
 
 	}
 	public void exec(){
@@ -101,7 +101,7 @@ public class MpGenerator {
             strategy.setTablePrefix(prefixs);// 此处可以修改为您的表前缀
         }
          strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-          strategy.setInclude(new String[] { "PATIENT" }); // 需要生成的表
+          strategy.setInclude(new String[] { "CASEH" }); // 需要生成的表
          // strategy.setInclude(new String[] { "SYS_PERMISSION","SYS_ROLE","SYS_ROLE_PERMISSION","SYS_USER_ROLE"}); // 需要生成的表
            if(this.tables != null){
                strategy.setInclude(tables);
@@ -118,7 +118,7 @@ public class MpGenerator {
           strategy.setSuperServiceClass("com.baomidou.mybatisplus.extension.service.IService");
          // 自定义 service 实现类父类
          strategy.setRestControllerStyle(true);
-          strategy.setSuperServiceImplClass("com.baomidou.mybatisplus.extension.service.impl.ServiceImpl");
+          strategy.setSuperServiceImplClass("com.baomidou.mybatisplus.extension.service.mapper.ServiceImpl");
          // 自定义 controller 父类
          // strategy.setSuperControllerClass("com.baomidou.demo.TestController");
          // 【实体】是否生成字段常量（默认 false）

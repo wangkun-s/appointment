@@ -2,6 +2,7 @@ package com.example.appointment.modular.doctor.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.appointment.modular.appointment.entity.Appointment;
 import com.example.appointment.modular.doctor.entity.Doctor;
 import com.example.appointment.modular.doctor.dao.DoctorMapper;
 import com.example.appointment.modular.doctor.service.IDoctorService;
@@ -45,4 +46,16 @@ public class DoctorServiceImpl extends ServiceImpl<DoctorMapper, Doctor> impleme
     public int updateStatus(Long did) {
         return doctorMapper.updateStatus(did);
     }
+
+    @Override
+    public Doctor doctorinfo(Long did) {
+        return doctorMapper.doctorinfo(did);
+    }
+
+    @Override
+    public List<Doctor> doctorsinfo() {
+        return doctorMapper.doctorsinfo();
+    }
+
+
 }

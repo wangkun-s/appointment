@@ -139,7 +139,7 @@
         submitForm(formName) {
           this.$refs[formName].validate((valid) => {
             if (valid) {
-              if(sessionStorage.getItem("pstate") === "true"){
+              if(sessionStorage.getItem("state") === "true"){
                 var time =this.ipaddrArray();
                 this.$axios({
                   method: "post",
@@ -151,7 +151,8 @@
                     aend: time[1],
                     astart: time[0],
                     atelephone: this.ruleForm.ptelephone,
-                    apid:sessionStorage.getItem("pid")
+                    apid:sessionStorage.getItem("id"),
+                    astatus:"true"
                   },
                 }).then((res)=>{
                   if(res.status==200){

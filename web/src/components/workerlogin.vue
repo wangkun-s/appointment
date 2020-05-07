@@ -86,8 +86,12 @@
                   location.reload();
                 }, 1400)
               }
+              console.log(res)
               sessionStorage.setItem("identity", res.data.didentity);
-              sessionStorage.setItem("pstate", this.pstate);
+              sessionStorage.setItem("state", this.pstate);
+              sessionStorage.setItem("idcard", res.data.didcard);
+              sessionStorage.setItem("id", res.data.did);
+
             },error =>{
               console.log(error.response.data.message)
               this.$myMsg.notify({

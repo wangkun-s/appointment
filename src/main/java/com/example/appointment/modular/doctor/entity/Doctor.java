@@ -59,7 +59,7 @@ public class Doctor extends Model<Doctor> {
     @TableField("D_STATUS")
     private String dStatus;
 
-    @TableField("DE_NAME")
+    @TableField(exist = false)
     private String deName;
 
     @Override

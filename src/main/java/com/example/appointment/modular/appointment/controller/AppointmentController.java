@@ -44,4 +44,36 @@ public class AppointmentController {
         return iAppointmentService.selectAppointment(pid);
     }
 
+    @GetMapping("/doctorAppointment")
+    @ApiOperation(value = "医生查看个人预约")
+    public List<Appointment> doctorAppointment(@RequestParam Long did){
+        List<Appointment> appointmentList = iAppointmentService.doctorAppointment(did);
+        return appointmentList;
+    }
+
+    @GetMapping("/appointmentinfo")
+    @ApiOperation(value = "查看预约患者基本信息")
+    public Appointment appointmentinfo(@RequestParam Long pid,@RequestParam Long aid){
+        Appointment appointmentList = iAppointmentService.appointmentinfo(pid,aid);
+        return appointmentList;
+    }
+
+    @PutMapping ("/updateStatus")
+    @ApiOperation(value = "改变状态")
+    public boolean updateStatus(@RequestParam Long aid){
+         int count = iAppointmentService.updateStatus(aid);
+         if( count== 1){
+             return true;
+         }else{
+             return false;
+         }
+    }
+
+    @GetMapping("/falsepatient")
+    @ApiOperation(value = "查看已完成患者")
+    public List<Appointment> falsepatient(@RequestParam String aStatus){
+        List<Appointment> appointmentList = iAppointmentService.falsepatient(aStatus);
+        return appointmentList;
+    }
+
 }

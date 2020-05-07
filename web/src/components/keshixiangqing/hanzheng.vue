@@ -15,7 +15,7 @@
           <el-popover>
             <el-button slot="reference">
               <div class="text item" style="width: 200px;height: 200px">
-                <img src="../../assets/doctor/doctor.jpg" style="height: 100px;width: 100px">
+                <img src="../../assets/doctor/doctor1.jpg" style="height: 100px;width: 100px">
                 <h5 class="mt-0" style="float: right;text-align:left;margin-left: 10px;font-size: 18px">
                   姓名：高梅</br>
                   科室：鼾症中心</br>

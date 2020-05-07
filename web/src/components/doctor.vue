@@ -8,7 +8,7 @@
       <el-popover>
         <el-button slot="reference">
           <div class="text item" style="width: 620px;height: 330px">
-            <img src="../assets/doctor/doctor.jpg" style="height: 300px;width: 200px">
+            <img src="../assets/doctor/doctor1.jpg" style="height: 300px;width: 200px">
             <h5 class="mt-0" style="float: right;text-align:left;margin-left: 10px;font-size: 18px">
                       姓名：丁云</br>
                       科室：第三门诊部正畸科</br>

@@ -30,4 +30,24 @@ public class AppointmentServiceImpl extends ServiceImpl<AppointmentMapper, Appoi
     public int getAppointment(@Param("aPid") Long aPid, @Param("aDate") String aDate) {
         return appointmentMapper.getAppointment(aPid,aDate);
     }
+
+    @Override
+    public List<Appointment> doctorAppointment(Long did) {
+        return appointmentMapper.doctorAppointment(did);
+    }
+
+    @Override
+    public Appointment appointmentinfo(@Param("pid")Long pid,@Param("aid") Long aid) {
+        return appointmentMapper.appointmentinfo(pid,aid);
+    }
+
+    @Override
+    public int updateStatus(Long aid) {
+        return appointmentMapper.updateStatus(aid);
+    }
+
+    @Override
+    public List<Appointment> falsepatient(String aStatus) {
+        return appointmentMapper.falsepatient(aStatus);
+    }
 }

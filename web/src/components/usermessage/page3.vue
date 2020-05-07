@@ -79,7 +79,7 @@
           },
           rules: {
             telephone: [{required: true, message: '请输入手机号', trigger: 'blur'},
-              {pattern: /^1(3|4|5|7|8|9)\d{9}$/, message: '手机号格式错误', trigger: 'blur'}],
+              {pattern: /^1(3|4|5|7|8|9)\d{9}$/, message: '手机号格式错误', trigger: 'change'}],
             password: [{ required: true, validator: validatePass, trigger: 'blur' }],
             checkPass: [{ required: true, validator: validatePass2, trigger: 'blur' }],
             checkPhone: [{required: true, message: '请输入有效验证码', trigger: 'blur'}],
@@ -94,8 +94,8 @@
                 method: "put",
                 url: "/api/patient/updatePassword" ,
                 params:{
-                  pidcard:sessionStorage.getItem("pidcard"),
-                  pid:sessionStorage.getItem("pid"),
+                  pidcard:sessionStorage.getItem("idcard"),
+                  pid:sessionStorage.getItem("id"),
                   ptelephone: this.ruleForm.telephone,
                   ppassword: this.ruleForm.password,
                 },

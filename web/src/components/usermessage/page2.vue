@@ -22,7 +22,7 @@
             method: "get",
             url: "/api/appointment/selectAppointment" ,
             params:{
-              pid:sessionStorage.getItem("pid")
+              pid:sessionStorage.getItem("id")
             },
           }).then((res)=>{
             for(let i=0;i<res.data.length;i++){

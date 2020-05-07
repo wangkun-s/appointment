@@ -79,13 +79,10 @@
                   location.reload();
                 }, 1400)
           }
-              sessionStorage.setItem("pstate", this.pstate);
-              sessionStorage.setItem("pid", res.data.pid);
+              sessionStorage.setItem("state", this.pstate);
+              sessionStorage.setItem("id", res.data.pid);
               sessionStorage.setItem("identity", res.data.pidentity);
-              // sessionStorage.setItem("ptelephone", res.data.ptelephone);
-              sessionStorage.setItem("pidcard", res.data.pidcard);
-              // sessionStorage.setItem("pemail", res.data.pemail);
-              // sessionStorage.setItem("psex", res.data.psex);
+              sessionStorage.setItem("idcard", res.data.pidcard);
             },error =>{
               console.log(error.response.data.message)
               this.$myMsg.notify({

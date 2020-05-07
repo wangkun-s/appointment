@@ -49,7 +49,7 @@
                 method: "put",
                 url: "/api/patient/updateTelephone" ,
                 params:{
-                  pidcard:sessionStorage.getItem("pidcard"),
+                  pidcard:sessionStorage.getItem("idcard"),
                   pid:sessionStorage.getItem("pid"),
                   jtelephone: this.ruleForm.jtelephone,
                   xtelephone: this.ruleForm.xtelephone,

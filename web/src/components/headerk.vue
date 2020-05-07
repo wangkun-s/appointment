@@ -145,7 +145,7 @@
             wechat:false,
             email:false,
             phone:false,
-            pstate: sessionStorage.getItem("pstate"),
+            pstate: sessionStorage.getItem("state"),
           };
         },
       methods:{

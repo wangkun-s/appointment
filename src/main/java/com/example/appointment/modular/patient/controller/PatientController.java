@@ -75,7 +75,7 @@ public class PatientController {
     @PutMapping("/updatePassword")
     @ApiOperation(value = "患者修改密码")
     public String updatePassword(@RequestParam String ptelephone, @RequestParam String ppassword,
-                                  @RequestParam long pid, @RequestParam String pidcard){
+                                  @RequestParam Long pid, @RequestParam String pidcard){
 
         Patient patient = new Patient();
         patient.setPpassword(ppassword);
@@ -94,7 +94,7 @@ public class PatientController {
     @PutMapping("/updateTelephone")
     @ApiOperation(value = "患者修改手机号")
     public String updateTelephone(@RequestParam String xtelephone, @RequestParam String jtelephone,
-                                 @RequestParam long pid, @RequestParam String pidcard){
+                                 @RequestParam Long pid, @RequestParam String pidcard){
 
         Patient patient = new Patient();
         patient.setPtelephone(xtelephone);
@@ -109,10 +109,11 @@ public class PatientController {
             throw new GlobalException("更新失败");
         }
     }
+
     @PutMapping("/updateEmail")
     @ApiOperation(value = "患者修改电子邮箱")
     public String updateEmail(@RequestParam String ptelephone, @RequestParam String pemail,
-                                  @RequestParam long pid, @RequestParam String pidcard){
+                                  @RequestParam Long pid, @RequestParam String pidcard){
 
         Patient patient = new Patient();
         patient.setPemail(pemail);

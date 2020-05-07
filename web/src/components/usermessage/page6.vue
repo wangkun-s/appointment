@@ -29,7 +29,10 @@
           .catch(_ => {});
       },
       quit(){
-        window.sessionStorage.removeItem("pstate");
+        window.sessionStorage.removeItem("state");
+        window.sessionStorage.removeItem("identity");
+        window.sessionStorage.removeItem("idcard");
+        window.sessionStorage.removeItem("id");
         this.$myMsg.notify({
           content: "退出成功",
           type: 'success',
