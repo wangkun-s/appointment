@@ -3,11 +3,14 @@
 <mapper namespace="com.example.appointment.modular.otherarea.dao.OtherareaMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.example.appointment.modular.otherarea.entity.Otherarea">
-        <result column="O_LOCATION" property="oLocation" />
-        <result column="O_ID" property="oId" />
-        <result column="O_JD" property="oJd" />
-        <result column="O_WD" property="oWd" />
-    </resultMap>
+    <!--<resultMap id="BaseResultMap" type="com.example.appointment.modular.otherarea.entity.Otherarea">-->
+        <!--<result column="O_LOCATION" property="oLocation" />-->
+        <!--<result column="O_ID" property="oId" />-->
+        <!--<result column="O_JD" property="oJd" />-->
+        <!--<result column="O_WD" property="oWd" />-->
+    <!--</resultMap>-->
 
+    <select id="otherarea" resultType="com.example.appointment.modular.otherarea.entity.Otherarea">
+        select * from OTHERAREA where O_LOCAL = #{olocal}
+    </select>
 </mapper>

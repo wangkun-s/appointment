@@ -53,4 +53,11 @@ public class DepartmentController {
             return false;
         }
     }
+
+    @GetMapping("/selectid")
+    @ApiOperation(value = "根据id查询科室信息")
+    public Department selectid(@RequestParam Long deId){
+        Department departmentList = iDepartmentService.getById(deId);
+        return departmentList;
+    }
 }

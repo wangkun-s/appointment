@@ -21,11 +21,10 @@
         </el-row>
         <el-container >
           <el-aside style="margin-top:15px">
-            <el-table :data="buildinglist" @row-click="skiptomap" fit highlight-current-row stripe border class="buildinglist">
-              <el-table-column prop="name" lable="name" align="center"></el-table-column>
+            <el-table :data="tableData">
               <el-table-column>
                 <template slot-scope="scope">
-                  <a href="scope.row.details" class="buttonText">{{scope.row.details}}</a>
+                  <el-button type="text" @click="handleJoinPeople(scope.row)">{{scope.row.olocation}}</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -43,8 +42,7 @@
     data(){
       return {
         //定义指定地点的名称和经纬度
-        buildinglist: [{ name: '鞍山市铁东区工农街分诊所' ,details:'详情', j: 123.0025096900, w: 41.1123523400 },
-          { name: '鞍山华润万象汇分诊所', details:'详情', j: 122.9915940500, w: 41.1152976900 }],
+        tableData:[],
         jd: 123.0025096900,  //初始地图中心点的经纬度
         wd: 41.1123523400,
         map: {},
@@ -52,26 +50,46 @@
       }
     },
     mounted: function () {
-      this.loadmap(this.jd,this.wd);
+      this.otherArea();
     },
     methods: {
+      handleJoinPeople(row){
+        console.log(row);
+        this.point = new BMap.Point(row.ojd, row.owd);
+        this.map.centerAndZoom(this.point, 16);
+        var content = "<table>";
+        content = content + "<tr><td> 地点："+row.olocation+"</td></tr>";
+        content = content + "<tr><td> 预约电话："+row.ophone+"</td></tr>";
+        content += "</table>";
+        var infoWindow = new BMap.InfoWindow(content);  // 创建信息窗口对象
+        this.map.openInfoWindow(infoWindow, this.point); //开启信息窗口
+      },
+      otherArea(){
+        this.$axios({
+          method: "get",
+          url: "/api/otherarea/otherarea" ,
+          params:{
+            olocal:"鞍山"
+          }
+        }).then((res)=>{
+          for(let i = 0;i<res.data.length;i++){
+            this.tableData.push(res.data[i])
+          }
+          this.loadmap(this.jd,this.wd);
+        })
+      },
       loadmap(jd, wd) {
         var _this = this;   //保存此时的this值！！！
         this.map = new BMap.Map("newmap");          // 创建地图实例
-        this.point = new BMap.Point(jd, wd);  // 创建点坐标
+        this.point = new BMap.Point(this.jd, this.wd);  // 创建点坐标
         this.map.centerAndZoom(this.point, 12);                 // 初始化地图，设置中心点坐标和地图级别
         //this.map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
-        this.buildinglist.forEach(function (item) {    //创建多标注
-          var point2 = new BMap.Point(item.j, item.w);
+        for (let i = 0; i < this.tableData.length; i++) {
+          console.log(this.tableData[i].ojd)
+          var point2 = new BMap.Point(this.tableData[i].ojd, this.tableData[i].owd);
           var marker = new BMap.Marker(point2);        // 创建标注
-          _this.map.addOverlay(marker);                    // 将标注添加到地图中
-        })
-      },
-      skiptomap(row, event, column) {
-        this.point = new BMap.Point(row.j, row.w);
-        this.map.centerAndZoom(this.point, 14);
-        var infoWindow = new BMap.InfoWindow(row.name);  // 创建信息窗口对象
-        this.map.openInfoWindow(infoWindow, this.point); //开启信息窗口
+          _this.map.addOverlay(marker);
+        }
       },
       dalian(){
         this.$router.push('/dalian')

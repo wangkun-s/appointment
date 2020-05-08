@@ -1,80 +1,45 @@
 <template>
-  <div>
-    <div style="width: auto;height: auto">
-      <img src="../../static/logo.jpg" style="width: 100px;height: 100px">
-      <i class="web-font">医好连锁口腔医院</i>
-      &nbsp;&nbsp;&nbsp;
-      <el-tag type="success">连锁专科</el-tag>
-      <el-tag type="info">国营</el-tag>
-      <el-tag type="warning">专科医院</el-tag>
-    </div>
-    <div class="card text-dark bg-light ">
-      <div class="card-body" style="width: 1200px;margin:0 auto;">
-        <el-tabs type="border-card">
-          <el-tab-pane label="所有专家列表">
-            <div class="col-md-12">
-              <el-card class="box-card" style="padding: 20px">
-                <div>
-                  <el-popover v-for="(data,i) in tableData" :key="i">
-                  <el-button slot="reference">
-                    <div class="text item" style="width: 200px;height: 200px">
-                        <img :src="data.demail" style="height: 100px;width: 100px">
-                      <h5 class="mt-0" style="float: right;text-align:left;margin-left: 10px;font-size: 18px">
-                        名字：{{data.dname}}</br>
-                        科室：{{data.de_name}}</br>
-                        职称：{{data.djob}}</br>
-                      </h5>
-                      <router-link :to="{path:'/timelink',query:{eDid:data.did}}">
-                        <el-button type="primary" plain>查看时间表</el-button>
-                      </router-link>
-                    </div>
-                  </el-button>
-                </el-popover>
-                </div>
-              </el-card>
-            </div>
-          </el-tab-pane>
-        </el-tabs>
+  <div class="card text-dark bg-light ">
+    <div class="card-body" style="width: 1200px;margin:0 auto;">
+      <div v-for="(data,i) in tableData" :key="i">
+        <div style="font-weight: bold;font-size: 25px;color: #08afaf">{{data.de_name}}>>科室介绍</div>
+        <div style="padding-top: 10px">
+          {{data.de_description}}
+        </div>
       </div>
+      <br/>
+      <div>
+        <p style="font-weight: bold;font-size: 25px;color: #08afaf">医生推荐</p>
+        <div>
+          <el-popover v-for="(data,i) in doctorList" :key="i">
+            <el-button slot="reference">
+              <div class="text item" style="width: 200px;height: 200px">
+                <img :src="data.demail" style="height: 100px;width: 100px">
+                <h5 class="mt-0" style="float: right;text-align:left;margin-left: 10px;font-size: 18px">
+                  名字：{{data.dname}}</br>
+                  科室：{{data.de_name}}</br>
+                  职称：{{data.djob}}</br>
+                </h5>
+                <router-link :to="{path:'/timelink',query:{eDid:data.did}}">
+                  <el-button type="primary" plain>查看时间表</el-button>
+                </router-link>
+              </div>
+            </el-button>
+          </el-popover>
+        </div>
+      </div>
+      <br/>
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    name:"doctorinfo",
-    methods: {
-      dingbu(){
-        this.$router.push('/doctorinfo');
-        // chrome
-        document.body.scrollTop = 0;
-        // firefox
-        document.documentElement.scrollTop = 0;
-        // safari
-        window.pageYOffset = 0;
-      },
-      all(){
-        this.$axios({
-          method:"get",
-          url: "/api/doctor/doctorsinfo",
-        }).then((res)=>{
-          for(let i=0;i<res.data.length;i++){
-            this.tableData.push(res.data[i])
-          }
-          for(let i=0;i<this.imgArr.length;i++){
-              this.tableData[i].demail = this.imgArr[i].imgSrc;
-          }
-        })
-      }
-    },
-
-    mounted(){
-      this.dingbu();
-      this.all();
-    },
+    name: 'detaile',
     data() {
       return {
-        tableData:[],
+        tableData: [],
+        doctorList:[],
         imgArr:[
           {imgSrc:require('../assets/doctor/doctor1.jpg')},
           {imgSrc:require('../assets/doctor/doctor2.jpg')},
@@ -177,27 +142,55 @@
           {imgSrc:require('../assets/doctor2/doctor34.jpg')},
         ]
       }
+    },
+
+    methods:{
+      idselect(deId){
+        this.$axios({
+          methods:"get",
+          url: "/api/department/selectid",
+          params:{
+            deId:this.deId
+          }
+        }).then((res)=>{
+          this.tableData.push(res.data)
+        })
+      },
+    selectdoctor(deId){
+      this.$axios({
+        method: "get",
+        url: "/api/doctor/selectdoctor" ,
+        params:{
+          dDeId:deId,
+        }
+      }).then((res)=>{
+        for(let i=0;i<res.data.length;i++){
+          this.doctorList.push(res.data[i]);
+        }
+        for(let i=0;i<this.doctorList.length;i++){
+          this.doctorList[i].demail = this.imgArr[i].imgSrc;
+        }
+        console.log( this.doctorList)
+      })
+    }
+    },
+    created() {
+      this.deId = this.$route.query.deId;//获取上个页面传递的id,在下面获取数据的时候先提交id
+      this.idselect(this.deId);
+      this.selectdoctor(this.deId);
+    },
+    mounted(){
+      // chrome
+      document.body.scrollTop = 0;
+      // firefox
+      document.documentElement.scrollTop = 0;
+      // safari
+      window.pageYOffset = 0;
     }
   }
 </script>
 
 <style>
-  @font-face {
-    font-family: 'webfont';
-    font-display: swap;
-    src: url('../css/webfont.eot'); /* IE9 */
-    src: url('../css/webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../css/webfont.woff2') format('woff2'),
-    url('../css/webfont.woff') format('woff'), /* chrome、firefox */ url('../css/webfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/ url('../css/webfont.svg#webfont') format('svg'); /* iOS 4.1- */
-  }
-
-  .web-font {
-    font-family: "webfont" !important;
-    font-size: 30px;
-    font-style: normal;
-    padding-left: 20px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
   .el-table .warning-row {
     background: oldlace;
   }

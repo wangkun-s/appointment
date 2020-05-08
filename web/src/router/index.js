@@ -61,6 +61,7 @@ import page24 from '../components/doctormessage/page24'
 import page25 from '../components/doctormessage/page25'
 import page26 from '../components/doctormessage/page26'
 import time from '../components/time'
+import detaile from  '../components/detaile'
 
 
 
@@ -135,6 +136,7 @@ export default new Router({
     {path:'/hemian',name:'hemian',component:hemian},
     {path:'/mazui',name:'mazui',component:mazui},
     {path:'/zonghe',name:'zonghe',component:zonghe},
+    {path:'/detaile',name:'detaile',component:detaile},
     {path:'/usermessage',name:'usermessage',component:usermessage},
     {path: '/usermessage', name: 'usermessage',component: usermessage, children:[
         {path: '/page1', name: 'page1', component: page1},

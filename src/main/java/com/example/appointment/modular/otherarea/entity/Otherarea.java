@@ -6,15 +6,17 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wangkun
- * @since 2020-05-07
+ * @since 2020-05-08
  */
+@Data
 @TableName("OTHERAREA")
 @ApiModel(value="Otherarea对象", description="")
 public class Otherarea extends Model<Otherarea> {
@@ -33,34 +35,12 @@ public class Otherarea extends Model<Otherarea> {
     @TableField("O_WD")
     private Double oWd;
 
-    public String getoLocation() {
-        return oLocation;
-    }
+    @TableField("O_LOCAL")
+    private String oLocal;
 
-    public void setoLocation(String oLocation) {
-        this.oLocation = oLocation;
-    }
-    public Double getoId() {
-        return oId;
-    }
+    @TableField("O_PHONE")
+    private String oPhone;
 
-    public void setoId(Double oId) {
-        this.oId = oId;
-    }
-    public Double getoJd() {
-        return oJd;
-    }
-
-    public void setoJd(Double oJd) {
-        this.oJd = oJd;
-    }
-    public Double getoWd() {
-        return oWd;
-    }
-
-    public void setoWd(Double oWd) {
-        this.oWd = oWd;
-    }
 
     @Override
     protected Serializable pkVal() {
@@ -70,10 +50,12 @@ public class Otherarea extends Model<Otherarea> {
     @Override
     public String toString() {
         return "Otherarea{" +
-        "oLocation=" + oLocation +
-        ", oId=" + oId +
-        ", oJd=" + oJd +
-        ", oWd=" + oWd +
-        "}";
+                "oLocation=" + oLocation +
+                ", oId=" + oId +
+                ", oJd=" + oJd +
+                ", oWd=" + oWd +
+                ", oLocal=" + oLocal +
+                ", oPhone=" + oPhone +
+                "}";
     }
 }
