@@ -10,7 +10,7 @@
           <el-table-column prop="aend" label="结束时间" width="120"></el-table-column>
           <el-table-column label="操作" width="150">
             <template slot-scope="scope">
-              <el-button @click="handleClick(scope.row)" type="text">填写病历</el-button>
+              <el-button @click="handle(scope.row)" type="text">填写病历</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -150,11 +150,8 @@
   export default {
     name:"page22",
     methods: {
-      handleClick(row) {
-          if (this.activename === 'patient') {
-            // 触发‘配置管理’事件
-            this.finish();
-          }else if (this.activename = "bingli" && row.apid!==undefined){
+      handle(row) {
+            this.activename="bingli"
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
             window.pageYOffset = 0;
@@ -178,7 +175,6 @@
                 this.form.did = res.data.adid,
                 this.form.aid = res.data.aid
             })
-          }
         },
       chakansubmit(row){
         this.activename = "chakan",
@@ -248,13 +244,18 @@
               }
             })
           }
+          this.activename="patient";
+          this.finish();
         })
       },
       finish(){
         this.$axios({
           method: "get",
           url: "/api/appointment/falsepatient",
-          params: {aStatus:'false'}
+          params: {
+            aStatus:'false',
+            aDid:sessionStorage.getItem("id")
+          }
         }).then((res)=> {
           this.tableData1=[];
           for (let i = 0; i < res.data.length; i++) {
@@ -278,10 +279,18 @@
             did: sessionStorage.getItem("id")
           }
         }).then((res)=> {
+          this.tableData=[];
           for (let i = 0; i < res.data.length; i++) {
             this.tableData.push(res.data[i])
           }
         })
+      },
+      handleClick(){
+        if(this.activename='appointment'){
+          this.doctorAppointment();
+        }else if(this.activename="patient"){
+          this.finish();
+        }
       }
     },
     data() {

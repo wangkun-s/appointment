@@ -71,8 +71,8 @@ public class AppointmentController {
 
     @GetMapping("/falsepatient")
     @ApiOperation(value = "查看已完成患者")
-    public List<Appointment> falsepatient(@RequestParam String aStatus){
-        List<Appointment> appointmentList = iAppointmentService.falsepatient(aStatus);
+    public List<Appointment> falsepatient(@RequestParam String aStatus,@RequestParam Long aDid){
+        List<Appointment> appointmentList = iAppointmentService.falsepatient(aStatus,aDid);
         return appointmentList;
     }
 

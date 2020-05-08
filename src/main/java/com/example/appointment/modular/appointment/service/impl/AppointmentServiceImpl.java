@@ -8,6 +8,7 @@ import com.example.appointment.modular.appointment.service.IAppointmentService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class AppointmentServiceImpl extends ServiceImpl<AppointmentMapper, Appoi
     }
 
     @Override
-    public List<Appointment> falsepatient(String aStatus) {
-        return appointmentMapper.falsepatient(aStatus);
+    public List<Appointment> falsepatient(@Param("aStatus") String aStatus,@Param("aDid") Long aDid) {
+        return appointmentMapper.falsepatient(aStatus,aDid);
     }
 }

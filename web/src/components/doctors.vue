@@ -15,25 +15,25 @@
                 <el-table-column
                   width="180">
                   <template slot-scope="scope">
-                    <a :href="'/#/'+scope.row.mingcheng+'?name='+scope.row.name1" class="buttonText">{{scope.row.name1}}</a>
+                    <a>{{scope.row.name1}}</a>
                   </template>
                 </el-table-column>
               <el-table-column
                 width="180">
                 <template slot-scope="scope">
-                  <a :href="'/#/'+scope.row.mingcheng+'?name='+scope.row.name2" class="buttonText">{{scope.row.name2}}</a>
+                  <a>{{scope.row.name2}}</a>
                 </template>
               </el-table-column>
               <el-table-column
                 width="180">
                 <template slot-scope="scope">
-                  <a :href="'/#/'+scope.row.mingcheng+'?name='+scope.row.name3" class="buttonText">{{scope.row.name3}}</a>
+                  <a>{{scope.row.name3}}</a>
                 </template>
               </el-table-column>
               <el-table-column
                 width="180">
                 <template slot-scope="scope">
-                  <a :href="'/#/'+scope.row.mingcheng+'?name='+scope.row.name4" class="buttonText">{{scope.row.name4}}</a>
+                  <a>{{scope.row.name4}}</a>
                 </template>
               </el-table-column>
             </el-table>
@@ -52,25 +52,25 @@
               <el-table-column
                 width="180">
                 <template slot-scope="scope">
-                  <a :href="'/#/'+scope.row.mingcheng+'?name='+scope.row.name1" class="buttonText">{{scope.row.name1}}</a>
+                  <a >{{scope.row.name1}}</a>
                 </template>
               </el-table-column>
               <el-table-column
                 width="180">
                 <template slot-scope="scope">
-                  <a :href="'/#/'+scope.row.mingcheng+'?name='+scope.row.name2" class="buttonText">{{scope.row.name2}}</a>
+                  <a >{{scope.row.name2}}</a>
                 </template>
               </el-table-column>
               <el-table-column
                 width="180">
                 <template slot-scope="scope">
-                  <a :href="'/#/'+scope.row.mingcheng+'?name='+scope.row.name3" class="buttonText">{{scope.row.name3}}</a>
+                  <a>{{scope.row.name3}}</a>
                 </template>
               </el-table-column>
               <el-table-column
                 width="180">
                 <template slot-scope="scope">
-                  <a :href="'/#/'+scope.row.mingcheng+'?name='+scope.row.name4" class="buttonText">{{scope.row.name4}}</a>
+                  <a>{{scope.row.name4}}</a>
                 </template>
               </el-table-column>
             </el-table>

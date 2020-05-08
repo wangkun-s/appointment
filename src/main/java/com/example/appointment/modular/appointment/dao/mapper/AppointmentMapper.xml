@@ -38,6 +38,6 @@
                 select appointment.*,department.de_name,patient.p_name from appointment,
         doctor, department, patient where doctor.d_id = appointment.a_did and
         appointment.a_deid = department.de_id and appointment.a_pid = patient.p_id
-        and APPOINTMENT.A_STATUS = #{aStatus}
+        and APPOINTMENT.A_STATUS = #{aStatus} and A_DID = #{aDid}
     </select>
 </mapper>

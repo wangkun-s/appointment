@@ -138,12 +138,10 @@
           })
         },
         submitForm(formName) {
-          console.log(this.startTime,this.endTime)
-          console.log(typeof (this.ruleForm.seleDate))
-          // console.log(  this.fun_date(7));
           this.$refs[formName].validate((valid) => {
             if (valid) {
-              if(sessionStorage.getItem("state") === "true"&& sessionStorage.getItem("identiey") === "1"){
+              if(sessionStorage.getItem("state") === "true"&& sessionStorage.getItem("identity") === "1"){
+                console.log(sessionStorage.getItem("identity"))
                 var time =this.ipaddrArray();
                 this.$axios({
                   method: "post",

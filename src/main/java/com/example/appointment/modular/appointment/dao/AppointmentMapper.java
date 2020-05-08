@@ -18,5 +18,5 @@ public interface AppointmentMapper extends BaseMapper<Appointment> {
 
     int updateStatus(Long aid);
 
-    List<Appointment> falsepatient(String aStatus);
+    List<Appointment> falsepatient(@Param("aStatus") String aStatus,@Param("aDid") Long aDid);
 }
