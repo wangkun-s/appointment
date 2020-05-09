@@ -1,13 +1,20 @@
 <template>
     <el-tabs type="border-card" v-model="activename" @tab-click="handleClick">
-      <el-tab-pane label="全部预约" name="appointment" style="height: 800px">
+      <el-tab-pane label="全部预约" name="first" style="height: 800px">
+        <div style="margin-top: 15px; width:500px ;padding-bottom: 10px">
+          <el-input placeholder="请输入手机号查询" v-model="input" class="input-with-select">
+            <el-button slot="append" icon="el-icon-search" @click="search"></el-button>
+          </el-input>
+        </div>
         <el-table :data="tableData" border style="width: 100%">
-          <el-table-column prop="aid" label="预约号" width="220"></el-table-column>
-          <el-table-column prop="pname" label="患者姓名" width="220"></el-table-column>
-          <el-table-column prop="de_name" label="科室" width="220"></el-table-column>
-          <el-table-column prop="adate" label="日期" width="220"></el-table-column>
-          <el-table-column prop="astart" label="开始时间" width="120"></el-table-column>
-          <el-table-column prop="aend" label="结束时间" width="120"></el-table-column>
+          <el-table-column prop="aid" label="预约号" width="100" sortable></el-table-column>
+          <el-table-column prop="pname" label="患者姓名" width="120"></el-table-column>
+          <el-table-column prop="atelephone" label="手机号" width="200"></el-table-column>
+          <el-table-column prop="pidcard" label="身份证" width="220"></el-table-column>
+          <el-table-column prop="de_name" label="科室" width="120"></el-table-column>
+          <el-table-column prop="adate" label="日期" width="150" sortable></el-table-column>
+          <el-table-column prop="astart" label="开始时间" width="120" sortable></el-table-column>
+          <el-table-column prop="aend" label="结束时间" width="120" sortable></el-table-column>
           <el-table-column label="操作" width="150">
             <template slot-scope="scope">
               <el-button @click="handle(scope.row)" type="text">填写病历</el-button>
@@ -16,7 +23,7 @@
         </el-table>
       </el-tab-pane>
 
-      <el-tab-pane label="填写电子病历" name="bingli">
+      <el-tab-pane label="填写电子病历" name="second">
         <span class="row">基本信息：</span>
         <el-form ref="form" :model="form" label-width="80px" style="padding-top: 20px">
           <div class="row">
@@ -79,7 +86,12 @@
         </el-dialog>
       </el-tab-pane>
 
-      <el-tab-pane label="已完成就诊患者" name="patient" style="height: 800px">
+      <el-tab-pane label="已完成就诊患者" name="third" style="height: 800px">
+        <div style="margin-top: 15px; width:500px ;padding-bottom: 10px">
+          <el-input placeholder="请输入手机号查询" v-model="input" class="input-with-select">
+            <el-button slot="append" icon="el-icon-search" @click="search"></el-button>
+          </el-input>
+        </div>
         <el-table :data="tableData1" border style="width: 100%">
           <el-table-column prop="aid" label="预约号" width="220"></el-table-column>
           <el-table-column prop="pname" label="患者姓名" width="220"></el-table-column>
@@ -96,9 +108,11 @@
       </el-tab-pane>
 
 
-      <el-tab-pane label="查看病历" name="chakan" style="height: 800px">
+      <el-tab-pane label="查看病历" name="forth" style="height: 800px">
         <template >
           <div>
+            <el-button type="success"
+                       @click="PrintClick" style="margin-bottom: 10px">导出或打印PDF</el-button>
             <div  id="FullOrderDetailBox" style="border: 1px solid #99a9bf;width: 1000px;margin-left: 100px">
               <div class="row" style="height: 50px" >
                 <div class="col-md-12" style="text-align: center" >
@@ -150,8 +164,37 @@
   export default {
     name:"page22",
     methods: {
+      search(){
+        console.log(this.input)
+        if(this.input !==''){
+          this.$axios({
+            method:"get",
+            url: "/api/appointment/select" ,
+            params:{
+              aDid: sessionStorage.getItem("id"),
+              atelephone:this.input,
+            },
+          }).then((res)=>{
+            this.tableData=[];
+            for(let i=0;i<res.data.length;i++){
+              this.tableData.push(res.data[i])
+            }
+          })
+        }else{
+          this.doctorAppointment();
+        }
+      },
+      handleClick(tab) {
+        if(tab.name === "first") {
+          this.doctorAppointment();
+        } else if(tab.name === "second") {
+        } else if(tab.name === "third") {
+          this.finish();
+        } else if(tab.name === "forth") {
+        }
+      },
       handle(row) {
-            this.activename="bingli"
+        this.activename="second";
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
             window.pageYOffset = 0;
@@ -177,7 +220,7 @@
             })
         },
       chakansubmit(row){
-        this.activename = "chakan",
+        this.activename="forth";
           document.body.scrollTop = 0;
         // firefox
         document.documentElement.scrollTop = 0;
@@ -203,11 +246,8 @@
       },
       submit(){
         this.dialogVisible = false;
-        // console.log(sessionStorage.getItem("state"))
         document.body.scrollTop = 0;
-        // firefox
         document.documentElement.scrollTop = 0;
-        // safari
         window.pageYOffset = 0;
         this.$axios({
           method:"post",
@@ -244,8 +284,6 @@
               }
             })
           }
-          this.activename="patient";
-          this.finish();
         })
       },
       finish(){
@@ -285,20 +323,26 @@
           }
         })
       },
-      handleClick(){
-        if(this.activename='appointment'){
-          this.doctorAppointment();
-        }else if(this.activename="patient"){
-          this.finish();
-        }
+      PrintClick() {
+        // window.print();//打印全部
+        var oldHtml = document.body.innerHTML;//将body内容先行存储
+        var printbox = document.getElementById("FullOrderDetailBox").innerHTML;//再将所要打印区域内容赋值给body
+        document.body.innerHTML = printbox;//再将所要打印区域内容赋值给body
+        window.print();//调用全部打印事件
+        document.body.innerHTML = oldHtml;//将body内容再返回原页面
+        window.location.reload();//打印取消后刷新页面防止按钮不能点击
       }
     },
     data() {
       return {
+        input:'',
         state:false,
-        activename:"appointment",
+        select: '',
+        activename:"first",
         tableData: [],
         tableData1:[],
+        htmlTitle: "PDF名称",
+        nowTime: "",
         dialogVisible:false,
         form:{
           name:'',
@@ -332,11 +376,14 @@
     },
     mounted(){
       this.doctorAppointment()
-    }
+    },
   }
 </script>
 <style>
   .el-textarea__inner{
     height: 100px;
+  }
+  .el-select .el-input {
+    width: 130px;
   }
 </style>

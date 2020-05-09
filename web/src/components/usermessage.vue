@@ -6,11 +6,11 @@
           <div style="background-color: white">
             <el-menu default-active="1" class="el-menu-vertical-demo" style="margin-left:50px;min-height:900px" @select="handleSelect">
               <el-menu-item index="1"><img src="../../static/usermessage.png" style="width: 20px;height: 20px" >个人信息卡</el-menu-item>
-              <el-menu-item index="2"><i class="el-icon-menu"></i>预约信息</el-menu-item>
+              <el-menu-item index="2"><i class="el-icon-menu"></i>预约信息及病历查看</el-menu-item>
               <el-menu-item index="3"><img src="../../static/passwordmessage.png" style="width: 20px;height: 20px">修改密码</el-menu-item>
               <el-menu-item index="4"><img src="../../static/phonemessage.png" style="width: 20px;height: 20px">修改手机号</el-menu-item>
               <el-menu-item index="5"><img src="../../static/emailmessage.png" style="width: 20px;height: 20px">修改邮箱</el-menu-item>
-              <el-menu-item index="7"><img src="../../static/bingli.png" style="width: 25px;height: 25px">电子病历</el-menu-item>
+              <!--<el-menu-item index="7"><img src="../../static/bingli.png" style="width: 25px;height: 25px">电子病历</el-menu-item>-->
               <el-menu-item index="6"><img src="../../static/quit.png" style="width: 20px;height: 20px">退出</el-menu-item>
             </el-menu>
           </div>
@@ -138,10 +138,10 @@
             this.$router.push('/page5')
             this.breadcrumbItems  = ['修改邮箱']
             break;
-          case '7':
-            this.$router.push('/page7')
-            this.breadcrumbItems  = ['电子病历']
-            break;
+          // case '7':
+          //   this.$router.push('/page7')
+          //   this.breadcrumbItems  = ['电子病历']
+          //   break;
           case '6':
             this.$router.push('/page6')
             this.breadcrumbItems  = ['退出']

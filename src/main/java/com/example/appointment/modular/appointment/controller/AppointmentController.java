@@ -76,4 +76,17 @@ public class AppointmentController {
         return appointmentList;
     }
 
+    @GetMapping("/falsep")
+    @ApiOperation(value = "患者查看已完成患者")
+    public List<Appointment> falsep(@RequestParam String aStatus,@RequestParam Long apid){
+        List<Appointment> appointmentList = iAppointmentService.falsep(aStatus,apid);
+        return appointmentList;
+    }
+
+    @GetMapping("/select")
+    @ApiOperation(value = "根据手机号查询患者")
+    public List<Appointment> select(@RequestParam String atelephone,@RequestParam Long aDid){
+        List<Appointment> appointmentList = iAppointmentService.select(atelephone,aDid);
+        return appointmentList;
+    }
 }

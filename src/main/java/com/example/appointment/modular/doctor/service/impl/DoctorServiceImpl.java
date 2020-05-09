@@ -57,5 +57,15 @@ public class DoctorServiceImpl extends ServiceImpl<DoctorMapper, Doctor> impleme
         return doctorMapper.doctorsinfo();
     }
 
+    @Override
+    public List<Doctor> persondoctor(@Param("didcard") String didcard, @Param("dtelephone") String dtelephone) {
+        return doctorMapper.persondoctor(didcard,dtelephone);
+    }
+
+    @Override
+    public int didcard(String didcard) {
+        return doctorMapper.didcard(didcard);
+    }
+
 
 }

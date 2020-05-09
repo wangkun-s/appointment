@@ -7,16 +7,18 @@
     </sql>
 
     <select id="selectAppointment" resultType="com.example.appointment.modular.appointment.entity.Appointment">
-        select department.de_name,doctor.d_name,appointment.*
+        select department.de_name,doctor.d_name,appointment.*,patient.P_IDCARD
         from appointment left join department on department.de_id = appointment.a_deid
-        left join doctor on appointment.a_did = doctor.d_id where A_PID=#{pid}
+        left join doctor on appointment.a_did = doctor.d_id
+        left join patient on patient.p_id = appointment.a_pid
+        where A_PID=#{pid} and appointment.A_STATUS = 'true'
     </select>
     <select id="getAppointment" resultType="java.lang.Integer">
         select count(*) from APPOINTMENT where A_PID=#{aPid} and A_DATE=#{aDate}
     </select>
 
     <select id="doctorAppointment" resultType="com.example.appointment.modular.appointment.entity.Appointment">
-        select appointment.*,department.de_name,patient.p_name from appointment,
+        select appointment.*,department.de_name,patient.p_name,PATIENT.P_IDCARD from appointment,
         doctor, department, patient where doctor.d_id = appointment.a_did and
         appointment.a_deid = department.de_id and appointment.a_pid = patient.p_id
         and doctor.d_id = #{did} and APPOINTMENT.A_STATUS = 'true' order by appointment.a_date DESC
@@ -39,5 +41,19 @@
         doctor, department, patient where doctor.d_id = appointment.a_did and
         appointment.a_deid = department.de_id and appointment.a_pid = patient.p_id
         and APPOINTMENT.A_STATUS = #{aStatus} and A_DID = #{aDid}
+    </select>
+
+    <select id="select" resultType="com.example.appointment.modular.appointment.entity.Appointment">
+            select appointment.*,department.de_name,patient.p_name from appointment,
+    doctor, department, patient where doctor.d_id = appointment.a_did and
+    appointment.a_deid = department.de_id and appointment.a_pid = patient.p_id
+    and APPOINTMENT.A_DID = #{aDid} and A_TELEPHONE = #{atelephone}
+    </select>
+
+    <select id="falsep" resultType="com.example.appointment.modular.appointment.entity.Appointment">
+        select appointment.*,department.de_name,patient.p_name from appointment,
+        doctor, department, patient where doctor.d_id = appointment.a_did and
+        appointment.a_deid = department.de_id and appointment.a_pid = patient.p_id
+        and APPOINTMENT.A_STATUS = #{aStatus} and A_PID = #{apid}
     </select>
 </mapper>

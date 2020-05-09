@@ -46,6 +46,17 @@
     <el-form-item style="margin-left: 100px">
       <el-button type="primary" @click="submitinfo('ruleForm')">提交创建</el-button>
     </el-form-item>
+    <el-dialog title="个人信息卡" :visible.sync="dialogTableVisible" v-for="(data) in tableData" :key="data">
+      <p>工号：{{data.did}}</p>
+      <p>姓名：{{data.dname}}</p>
+      <p>手机号：{{data.dtelephone}}</p>
+      <p>身份证号：{{data.didcard}}</p>
+      <p>电子邮箱：{{data.demail}}</p>
+      <p>密码：{{data.dpassword}}</p>
+      <p>职称：{{data.djob}}</p>
+      <p>科室：{{data.de_name}}</p>
+    </el-dialog>
+
   </el-form>
 </template>
 
@@ -54,6 +65,7 @@
     name: "page01",
     data() {
       return {
+        dialogTableVisible:false,
         ruleForm: {
           name: '',
           idcard:'',
@@ -65,6 +77,7 @@
           email:'',
           identity: 2 ,
         },
+        tableData:[],
         keshiList:[],
         visible: true,
         rules: {
@@ -122,6 +135,19 @@
                   content: "创建医生账号成功",
                   type: 'success',
                 })
+                this.$axios({
+                  method: "get",
+                  url: "/api/doctor/persondoctor" ,
+                  params:{
+                    didcard:this.ruleForm.idcard,
+                    dtelephone:this.ruleForm.telephone,
+                  },
+                }).then((res)=>{
+                  for(let i=0;i<res.data.length;i++){
+                    this.tableData.push(res.data[i])
+                  }
+                  this.dialogTableVisible=true
+                })
                 setTimeout(() => {
                   this.$router.push('/page02')
                   // console.log(sessionStorage.getItem("state"))
@@ -131,7 +157,8 @@
                   // safari
                   window.pageYOffset = 0;
                   location.reload();
-                }, 1400)}
+                }, 1400)
+                }
             },error =>{
               console.log(error.response.data.message)
               this.$myMsg.notify({

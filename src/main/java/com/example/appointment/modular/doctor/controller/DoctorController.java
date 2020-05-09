@@ -56,12 +56,19 @@ public class DoctorController {
     @PostMapping("/addDoctor")
     @ApiOperation(value = "创建医生")
     public boolean addDoctor(@RequestBody Doctor doctor){
-        boolean flag=iDoctorService.save(doctor);
-        if(flag == true){
-            return true;
+        String didcard = doctor.getDIdcard();
+        int count = iDoctorService.didcard(didcard);
+        if(count == 0){
+            boolean flag=iDoctorService.save(doctor);
+            if(flag == true){
+                return true;
+            }else{
+                throw new GlobalException("创建失败");
+            }
         }else{
-            return false;
+            throw new GlobalException("请检查身份证号码");
         }
+
     }
 
     @GetMapping("/selectAll")
@@ -153,5 +160,12 @@ public class DoctorController {
     public List<Doctor> doctorsinfo(){
         List<Doctor> doctor = iDoctorService.doctorsinfo();
         return doctor;
+    }
+
+    @GetMapping("/persondoctor")
+    @ApiOperation(value = "医生信息")
+    public List<Doctor> persondoctor(@RequestParam String didcard,@RequestParam String dtelephone){
+        List<Doctor> doctorList = iDoctorService.persondoctor(didcard,dtelephone);
+        return doctorList;
     }
 }

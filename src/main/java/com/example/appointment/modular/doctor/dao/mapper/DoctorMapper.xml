@@ -46,4 +46,13 @@
         where DOCTOR.D_DEID = DEPARTMENT.DE_ID
     </select>
 
+    <select id="persondoctor" resultType="com.example.appointment.modular.doctor.entity.Doctor">
+        select DOCTOR.*,DEPARTMENT.DE_NAME from DEPARTMENT,DOCTOR
+        where DOCTOR.D_DEID = DEPARTMENT.DE_ID and doctor.D_IDCARD = #{didcard}
+        and doctor.D_TELEPHONE= #{dtelephone}
+    </select>
+
+    <select id="idcard" resultType="java.lang.Integer">
+        select count(*) from DOCTOR where DOCTOR.D_IDCARD=#{didcard}
+    </select>
 </mapper>

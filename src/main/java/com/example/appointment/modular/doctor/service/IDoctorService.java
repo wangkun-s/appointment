@@ -30,4 +30,8 @@ public interface IDoctorService extends IService<Doctor> {
 
 
     List<Doctor> doctorsinfo();
+
+    List<Doctor> persondoctor(@Param("didcard") String didcard, @Param("dtelephone") String dtelephone);
+
+    int didcard(String didcard);
 }

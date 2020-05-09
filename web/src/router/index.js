@@ -25,15 +25,15 @@ import jiaohaodoc from  '../components/docm/jiaohaodoc'
 import nurse from '../components/nurse'
 import doctor from '../components/doctor'
 import doctors from '../components/doctors'
-import hanzheng from '../components/keshixiangqing/hanzheng'
-import kouqiangxiufu from '../components/keshixiangqing/kouqiangxiufu'
-import zhongzhi from '../components/keshixiangqing/zhongzhi'
-import yasui from '../components/keshixiangqing/yasui'
-import nianmo from '../components/keshixiangqing/nianmo'
-import zhengji from '../components/keshixiangqing/zhengji'
-import mazui from '../components/keshixiangqing/mazui'
-import zonghe from '../components/keshixiangqing/zonghe'
-import hemian from '../components/keshixiangqing/hemian'
+// import hanzheng from '../components/keshixiangqing/hanzheng'
+// import kouqiangxiufu from '../components/keshixiangqing/kouqiangxiufu'
+// import zhongzhi from '../components/keshixiangqing/zhongzhi'
+// import yasui from '../components/keshixiangqing/yasui'
+// import nianmo from '../components/keshixiangqing/nianmo'
+// import zhengji from '../components/keshixiangqing/zhengji'
+// import mazui from '../components/keshixiangqing/mazui'
+// import zonghe from '../components/keshixiangqing/zonghe'
+// import hemian from '../components/keshixiangqing/hemian'
 import keshiinfo from '../components/keshiinfo'
 import doctorinfo from '../components/doctorinfo'
 import chain from '../components/chain'
@@ -49,7 +49,7 @@ import page3 from '../components/usermessage/page3'
 import page4 from '../components/usermessage/page4'
 import page5 from '../components/usermessage/page5'
 import page6 from '../components/usermessage/page6'
-import page7 from '../components/usermessage/page7'
+// import page7 from '../components/usermessage/page7'
 import page01 from '../components/adminmessage/page01'
 import page02 from '../components/adminmessage/page02'
 import page03 from '../components/adminmessage/page03'
@@ -127,15 +127,15 @@ export default new Router({
       name: 'doctor',
       component: doctor
     },
-    {path:'/hanzheng',name:'hanzheng',component:hanzheng},
-    {path:'/kouqiangxiufu',name:'kouqiangxiufu',component:kouqiangxiufu},
-    {path:'/zhongzhi',name:'zhongzhi',component:zhongzhi},
-    {path:'/yasui',name:'yasui',component:yasui},
-    {path:'/nianmo',name:'nianmo',component:nianmo},
-    {path:'/zhengji',name:'zhengji',component:zhengji},
-    {path:'/hemian',name:'hemian',component:hemian},
-    {path:'/mazui',name:'mazui',component:mazui},
-    {path:'/zonghe',name:'zonghe',component:zonghe},
+    // {path:'/hanzheng',name:'hanzheng',component:hanzheng},
+    // {path:'/kouqiangxiufu',name:'kouqiangxiufu',component:kouqiangxiufu},
+    // {path:'/zhongzhi',name:'zhongzhi',component:zhongzhi},
+    // {path:'/yasui',name:'yasui',component:yasui},
+    // {path:'/nianmo',name:'nianmo',component:nianmo},
+    // {path:'/zhengji',name:'zhengji',component:zhengji},
+    // {path:'/hemian',name:'hemian',component:hemian},
+    // {path:'/mazui',name:'mazui',component:mazui},
+    // {path:'/zonghe',name:'zonghe',component:zonghe},
     {path:'/detaile',name:'detaile',component:detaile},
     {path:'/usermessage',name:'usermessage',component:usermessage},
     {path: '/usermessage', name: 'usermessage',component: usermessage, children:[
@@ -145,7 +145,7 @@ export default new Router({
         {path: '/page4', name: 'page4', component: page4},
         {path: '/page5', name: 'page5', component: page5},
         {path: '/page6', name: 'page5', component: page6},
-        {path: '/page7', name: 'page7', component: page7},
+        // {path: '/page7', name: 'page7', component: page7},
         {path: '/page01', name: 'page01', component: page01},
         {path: '/page02', name: 'page02', component: page02},
         {path: '/page03', name: 'page03', component: page03},
