@@ -14,11 +14,21 @@
           <el-tab-pane label="所有专家列表">
             <div class="col-md-12">
               <el-card class="box-card" style="padding: 20px">
+                <div style=" margin-bottom: 20px; width: 400px; margin-left: 570px">
+                  <el-input placeholder="请输入内容" v-model="input" class="input-with-select">
+                    <el-select v-model="select" slot="prepend" placeholder="请选择" style="width: 100px;">
+                      <el-option label="姓名" value="name"></el-option>
+                      <el-option label="科室" value="department"></el-option>
+                      <el-option label="职称" value="job"></el-option>
+                    </el-select>
+                    <el-button slot="append" icon="el-icon-search" @click="selectInput"></el-button>
+                  </el-input>
+                </div>
                 <div>
                   <el-popover v-for="(data,i) in tableData" :key="i">
                   <el-button slot="reference">
                     <div class="text item" style="width: 200px;height: 200px">
-                        <img :src="data.demail" style="height: 100px;width: 100px">
+                        <img :src="data.img" style="height: 100px;width: 100px">
                       <h5 class="mt-0" style="float: right;text-align:left;margin-left: 10px;font-size: 18px">
                         名字：{{data.dname}}</br>
                         科室：{{data.de_name}}</br>
@@ -44,6 +54,25 @@
   export default {
     name:"doctorinfo",
     methods: {
+      selectInput(){
+        this.$axios({
+          method:"get",
+          url: "/api/doctor/selectInput",
+          params: {
+            input: this.input,
+            select: this.select,
+          }
+          }).then((res)=>{
+            this.tableData = [];
+            for(let i=0;i<res.data.length;i++){
+              this.tableData.push(res.data[i]);
+              this.tableData[i].img = '';
+            }
+            for(let i=0;i<this.imgArr.length;i++){
+              this.tableData[i].img = this.imgArr[i].imgSrc;
+            }
+          })
+      },
       dingbu(){
         this.$router.push('/doctorinfo');
         // chrome
@@ -60,9 +89,10 @@
         }).then((res)=>{
           for(let i=0;i<res.data.length;i++){
             this.tableData.push(res.data[i])
+            this.tableData[i].img = '';
           }
-          for(let i=0;i<this.imgArr.length;i++){
-              this.tableData[i].demail = this.imgArr[i].imgSrc;
+          for(let i=0;i<this.tableData.length;i++){
+              this.tableData[i].img = this.imgArr[i].imgSrc;
           }
         })
       }
@@ -74,6 +104,9 @@
     },
     data() {
       return {
+        input: '',
+        select: '',
+        img:'',
         tableData:[],
         imgArr:[
           {imgSrc:require('../assets/doctor/doctor1.jpg')},

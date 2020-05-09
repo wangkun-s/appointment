@@ -56,4 +56,9 @@
         appointment.a_deid = department.de_id and appointment.a_pid = patient.p_id
         and APPOINTMENT.A_STATUS = #{aStatus} and A_PID = #{apid}
     </select>
+
+    <select id="getDoctorExchange" resultType="java.lang.Integer">
+        select count(*) from EXCHANGE where E_DID = #{eDid} and E_DATE = #{eDate}
+        and E_START = #{eStart} and E_END = #{eEnd}
+    </select>
 </mapper>

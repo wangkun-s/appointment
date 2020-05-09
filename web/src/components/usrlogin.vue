@@ -26,7 +26,7 @@
 
               <el-form-item style="margin-left: -80px;margin-top: 30px">
                 <el-button type="primary" @click="submitForm('ruleForm')">立即登录</el-button>
-                <span @click="" style="font-size: 14px;color: dodgerblue">忘记密码？</span>
+                <span @click="forgetPassword" style="font-size: 14px;color: dodgerblue">忘记密码？</span>
               </el-form-item>
             </el-form>
           </div>
@@ -57,6 +57,9 @@
       };
     },
     methods: {
+      forgetPassword(){
+        this.$router.push('/forgetPassword')
+      },
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {

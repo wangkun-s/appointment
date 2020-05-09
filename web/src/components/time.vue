@@ -40,6 +40,14 @@
           }
       },
       methods:{
+        dingbu(){
+          // chrome
+          document.body.scrollTop = 0;
+          // firefox
+          document.documentElement.scrollTop = 0;
+          // safari
+          window.pageYOffset = 0;
+        },
         fun_date(aa){
           var today = new Date();
           var targetday_milliseconds=today.getTime() + 1000*60*60*24*aa;
@@ -101,6 +109,9 @@
          this.all(this.eDid);
          this.getexchange(this.eDid)
       },
+      mounted(){
+          this.dingbu();
+      }
     }
 </script>
 

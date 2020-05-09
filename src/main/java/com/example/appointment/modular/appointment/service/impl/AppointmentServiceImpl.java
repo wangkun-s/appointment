@@ -61,4 +61,10 @@ public class AppointmentServiceImpl extends ServiceImpl<AppointmentMapper, Appoi
     public List<Appointment> falsep(@Param("aStatus")String aStatus, @Param("apid")Long apid) {
         return appointmentMapper.falsep(aStatus,apid);
     }
+
+    @Override
+    public int getDoctorExchange(@Param("eDid") Long eDid, @Param("eDate") String eDate,
+                                 @Param("eStart") String eStart, @Param("eEnd") String eEnd) {
+        return appointmentMapper.getDoctorExchange(eDid,eDate,eStart,eEnd);
+    }
 }

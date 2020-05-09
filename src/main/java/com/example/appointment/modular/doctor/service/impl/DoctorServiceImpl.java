@@ -67,5 +67,20 @@ public class DoctorServiceImpl extends ServiceImpl<DoctorMapper, Doctor> impleme
         return doctorMapper.didcard(didcard);
     }
 
+    @Override
+    public List<Doctor> selectName(String select) {
+        return doctorMapper.selectName(select);
+    }
+
+    @Override
+    public List<Doctor> selectJob(String select) {
+        return doctorMapper.selectJob(select);
+    }
+
+    @Override
+    public List<Doctor> selectDepartment(String select) {
+        return doctorMapper.selectDepartment(select);
+    }
+
 
 }

@@ -27,14 +27,24 @@ public class AppointmentController {
     @PostMapping("/addAppointment")
     @ApiOperation(value = "增加预约信息")
     public boolean addAppointment(@RequestBody Appointment appointment){
-        Long aPid = appointment.getAPid();
-        String aDate = appointment.getADate();
-        int count = iAppointmentService.getAppointment(aPid, aDate);
-        if(count==0){
-            return iAppointmentService.save(appointment);
+        Long eDid = appointment.getADid();
+        String eDate = appointment.getADate();
+        String eStart = appointment.getAStart();
+        String eEnd = appointment.getAEnd();
+        int cou = iAppointmentService.getDoctorExchange(eDid,eDate,eStart,eEnd);
+        if(cou==0){
+            Long aPid = appointment.getAPid();
+            String aDate = appointment.getADate();
+            int count = iAppointmentService.getAppointment(aPid, aDate);
+            if(count==0){
+                return iAppointmentService.save(appointment);
+            }else {
+                throw new GlobalException("同一天内只能预约一次");
+            }
         }else {
-            throw new GlobalException("同一天内只能预约一次");
+            throw new GlobalException("抱歉，此医生此时间段休息");
         }
+
 
     }
 

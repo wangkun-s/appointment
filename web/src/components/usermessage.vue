@@ -6,7 +6,7 @@
           <div style="background-color: white">
             <el-menu default-active="1" class="el-menu-vertical-demo" style="margin-left:50px;min-height:900px" @select="handleSelect">
               <el-menu-item index="1"><img src="../../static/usermessage.png" style="width: 20px;height: 20px" >个人信息卡</el-menu-item>
-              <el-menu-item index="2"><i class="el-icon-menu"></i>预约信息及病历查看</el-menu-item>
+              <el-menu-item index="2"><i class="el-icon-menu"></i>预约及病历查看</el-menu-item>
               <el-menu-item index="3"><img src="../../static/passwordmessage.png" style="width: 20px;height: 20px">修改密码</el-menu-item>
               <el-menu-item index="4"><img src="../../static/phonemessage.png" style="width: 20px;height: 20px">修改手机号</el-menu-item>
               <el-menu-item index="5"><img src="../../static/emailmessage.png" style="width: 20px;height: 20px">修改邮箱</el-menu-item>
@@ -66,7 +66,7 @@
           <div style="background-color: white">
             <el-menu default-active="1" class="el-menu-vertical-demo" style="margin-left:50px" @select="handleSelect2">
               <el-menu-item index="1"><img src="../../static/usermessage.png" style="width: 20px;height: 20px" >个人信息卡</el-menu-item>
-              <el-menu-item index="2"><i class="el-icon-menu"></i>查看预约</el-menu-item>
+              <el-menu-item index="2"><i class="el-icon-menu"></i>预约及病历填写</el-menu-item>
               <el-menu-item index="3"><img src="../../static/time.png" style="width: 20px;height: 20px" >安排时间</el-menu-item>
               <el-menu-item index="4"><img src="../../static/phonemessage.png" style="width: 20px;height: 20px">修改手机号</el-menu-item>
               <el-menu-item index="5"><img src="../../static/passwordmessage.png" style="width: 20px;height: 20px">修改密码</el-menu-item>

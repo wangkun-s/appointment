@@ -23,4 +23,7 @@ public interface AppointmentMapper extends BaseMapper<Appointment> {
     List<Appointment> select(@Param("atelephone") String atelephone,@Param("aDid") Long aDid);
 
     List<Appointment> falsep(@Param("aStatus") String aStatus,@Param("apid") Long apid);
+
+    int getDoctorExchange(@Param("eDid") Long eDid, @Param("eDate") String eDate,
+                          @Param("eStart") String eStart, @Param("eEnd") String eEnd);
 }

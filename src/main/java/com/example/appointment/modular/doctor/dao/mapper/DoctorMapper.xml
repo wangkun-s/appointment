@@ -55,4 +55,19 @@
     <select id="idcard" resultType="java.lang.Integer">
         select count(*) from DOCTOR where DOCTOR.D_IDCARD=#{didcard}
     </select>
+
+    <select id="selectName" resultType="com.example.appointment.modular.doctor.entity.Doctor">
+        select DOCTOR.*,DEPARTMENT.DE_NAME from DEPARTMENT,DOCTOR
+        where DOCTOR.D_DEID = DEPARTMENT.DE_ID and DOCTOR.D_NAME = #{select}
+    </select>
+
+    <select id="selectJob" resultType="com.example.appointment.modular.doctor.entity.Doctor">
+        select DOCTOR.*,DEPARTMENT.DE_NAME from DEPARTMENT,DOCTOR
+        where DOCTOR.D_DEID = DEPARTMENT.DE_ID and DOCTOR.D_JOB = #{select}
+    </select>
+
+    <select id="selectDepartment" resultType="com.example.appointment.modular.doctor.entity.Doctor">
+        select DOCTOR.*,DEPARTMENT.DE_NAME from DEPARTMENT,DOCTOR
+        where DOCTOR.D_DEID = DEPARTMENT.DE_ID and ,DEPARTMENT.DE_NAME = #{select}
+    </select>
 </mapper>

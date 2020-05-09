@@ -10,7 +10,8 @@
       <el-button type="info" style="padding: 12px 8px;" plain :disabled="disabled" @click="sendcode" class="btns">{{btntxt}}</el-button>
     </el-form-item>
     <el-form-item label="验证码" prop="checkPhone">
-      <el-input v-model="ruleForm.checkPhone" placeholder="请输入正确验证码" style="width: 330px"></el-input>
+      <el-input @change="mouseLeave" v-model="ruleForm.checkPhone" placeholder="请输入正确验证码" style="width: 330px"></el-input>
+      <span style="font-size: 11px;color: red">{{errormessage}}</span>
     </el-form-item>
     <el-form-item style="margin-left: 100px">
       <el-button type="primary" @click="changeinfo('ruleForm')">提交修改</el-button>
@@ -23,6 +24,8 @@
     name: "page24",
     data() {
       return {
+        errormessage:'',
+        code:'',
         btntxt:"获取验证码",
         disabled:false,
         visiable: true,
@@ -42,6 +45,13 @@
       };
     },
     methods:{
+      mouseLeave(){
+        if(this.code.toString() !== this.ruleForm.checkPhone){
+          this.errormessage = "验证码输入错误";
+        }else{
+          this.errormessage = '';
+        }
+      },
       changeinfo(formName){
         this.$refs[formName].validate((valid) => {
           if (valid) {
@@ -88,6 +98,7 @@
             telephone:this.ruleForm.telephone
           }
         }).then((res)=>{
+          this.code = res.data;
         })
       },
       timer() {

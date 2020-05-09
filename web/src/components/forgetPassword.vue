@@ -1,6 +1,6 @@
 <template>
   <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm"
-           style="margin-left: 300px;margin-top: 100px">
+           style="margin-left: 500px;margin-top: 100px">
     <el-form-item label="手机号" prop="telephone">
       <el-input v-model="ruleForm.telephone" placeholder="请输入手机号" :maxlength="11" show-word-limit clearable
                 prefix-icon='el-icon-mobile'  style="width: 330px"></el-input>
@@ -12,25 +12,25 @@
     </el-form-item>
     <el-form-item v-if="visible" label="新密码" prop="password" >
       <el-input type="password" v-model="ruleForm.password" autocomplete="off" placeholder="请输入新密码" style="width: 330px">
-        <img src="../../../static/invisiable.png" slot="suffix" title="显示密码" @click="pass('show')" style="cursor:pointer;"
+        <img src="../../static/invisiable.png" slot="suffix" title="显示密码" @click="pass('show')" style="cursor:pointer;"
              class="el-input__icon iconfont icon-xianshi">
       </el-input>
     </el-form-item>
     <el-form-item v-else label="新密码" prop="password" >
       <el-input type="text" v-model="ruleForm.password" autocomplete="off" placeholder="请输入新密码" style="width: 330px">
-        <img src="../../../static/visiable.png" slot="suffix" title="显示密码" @click="pass('hide')" style="cursor:pointer;"
+        <img src="../../static/visiable.png" slot="suffix" title="显示密码" @click="pass('hide')" style="cursor:pointer;"
              class="el-input__icon iconfont icon-xianshi">
       </el-input>
     </el-form-item>
     <el-form-item  v-if="visiable" label="确认新密码" prop="checkPass">
       <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off" placeholder="请确认新密码" style="width: 330px">
-        <img src="../../../static/invisiable.png" slot="suffix" title="显示密码" @click="changePass('show')" style="cursor:pointer;"
+        <img src="../../static/invisiable.png" slot="suffix" title="显示密码" @click="changePass('show')" style="cursor:pointer;"
              class="el-input__icon iconfont icon-xianshi">
       </el-input>
     </el-form-item>
     <el-form-item v-else label="确认新密码" prop="checkPass">
       <el-input type="text" v-model="ruleForm.checkPass" autocomplete="off" placeholder="请确认新密码" style="width: 330px">
-        <img src="../../../static/visiable.png" slot="suffix" title="显示密码" @click="changePass('hide')" style="cursor:pointer;"
+        <img src="../../static/visiable.png" slot="suffix" title="显示密码" @click="changePass('hide')" style="cursor:pointer;"
              class="el-input__icon iconfont icon-xianshi">
       </el-input>
     </el-form-item>
@@ -42,7 +42,7 @@
 
 <script>
   export default {
-    name: "page25",
+    name: "forgetPassword",
     data() {
       var validatePass = (rule, value, callback) => {
         if (value === '') {
@@ -64,14 +64,14 @@
         }
       };
       return {
-        errormessage:'',
-        code:'',
         show:false,
         errorshow:false,
         disabled:false,
         time:0,
         btntxt:"获取验证码",
         error:'',
+        code:'',
+        errormessage:'',
         visiable: true,
         visible:true,
         ruleForm: {
@@ -102,12 +102,12 @@
           if (valid) {
             this.$axios({
               method: "put",
-              url: "/api/doctor/updatePassword" ,
+              url: "/api/patient/updatePassword" ,
               params:{
-                didcard:sessionStorage.getItem("idcard"),
-                did:sessionStorage.getItem("id"),
-                dtelephone: this.ruleForm.telephone,
-                dpassword: this.ruleForm.password,
+                pidcard:sessionStorage.getItem("idcard"),
+                pid:sessionStorage.getItem("id"),
+                ptelephone: this.ruleForm.telephone,
+                ppassword: this.ruleForm.password,
               },
             }).then((res)=>{
               // console.log(res);
@@ -117,7 +117,7 @@
                   type: 'success',
                 })
                 setTimeout(() => {
-                  this.$router.push('/home')
+                  this.$router.push('/login')
                 }, 1400)
               }
             },error =>{

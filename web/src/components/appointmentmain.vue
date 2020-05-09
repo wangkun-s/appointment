@@ -9,7 +9,7 @@
       <el-tag type="warning">专科医院</el-tag>
     </div>
     <div class="card text-dark bg-light ">
-      <div class="card-body" style="width: 1200px;margin:0 auto;">
+      <div class="card-body" style="width: 1200px;margin-left:200px;">
         <el-tabs type="border-card">
           <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="330px" class="demo-ruleForm" >
             <el-form-item label="科室" prop="keshi">
@@ -39,7 +39,8 @@
               <el-button type="info" style="padding: 12px 8px;" plain :disabled="disabled" @click="sendcode" class="btns">{{btntxt}}</el-button>
             </el-form-item>
             <el-form-item label="验证码" prop="checkPhone">
-              <el-input v-model="ruleForm.checkPhone" placeholder="请输入正确验证码" style="width: 330px"></el-input>
+              <el-input @change="mouseLeave" v-model="ruleForm.checkPhone" placeholder="请输入正确验证码" style="width: 330px"></el-input>
+              <span style="font-size: 11px;color: red">{{errormessage}}</span>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="submitForm('ruleForm')">立即预约</el-button>
@@ -61,6 +62,8 @@
         name: "appointmentmain",
       data() {
         return {
+          code:'',
+          errormessage:'',
           list: [],
           ide: 0,//默认选择第一个
           days: [],
@@ -96,6 +99,13 @@
         }
       },
       methods: {
+        mouseLeave(){
+          if(this.code.toString() !== this.ruleForm.checkPhone){
+            this.errormessage = "验证码输入错误";
+          }else{
+            this.errormessage = '';
+          }
+        },
         ipaddrArray(){
           var time = this.ruleForm.seleTime.split('-')
           return time;
@@ -141,7 +151,7 @@
           this.$refs[formName].validate((valid) => {
             if (valid) {
               if(sessionStorage.getItem("state") === "true"&& sessionStorage.getItem("identity") === "1"){
-                console.log(sessionStorage.getItem("identity"))
+                // console.log(sessionStorage.getItem("identity"))
                 var time =this.ipaddrArray();
                 this.$axios({
                   method: "post",
@@ -196,9 +206,10 @@
             method: "get",
             url: "/api/fitness/code" ,
             params: {
-              telephone:this.ruleForm.telephone
+              telephone:this.ruleForm.ptelephone
             }
           }).then((res)=>{
+            this.code = res.data;
           })
         },
         timer() {

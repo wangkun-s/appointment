@@ -168,4 +168,18 @@ public class DoctorController {
         List<Doctor> doctorList = iDoctorService.persondoctor(didcard,dtelephone);
         return doctorList;
     }
+
+    @GetMapping("/selectInput")
+    @ApiOperation(value = "根据条件查询医生")
+    public List<Doctor> selectInput(@RequestParam String input,@RequestParam String select){
+        if(select.equals("name") && !input.isEmpty()){
+           return iDoctorService.selectName(select);
+        }else if(select.equals("job") && !input.isEmpty()){
+           return iDoctorService.selectJob(select);
+        }else if(select.equals("department") && !input.isEmpty()){
+          return iDoctorService.selectDepartment(select);
+        }else{
+           return iDoctorService.doctorsinfo();
+        }
+    }
 }

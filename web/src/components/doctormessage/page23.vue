@@ -1,12 +1,13 @@
 <template>
   <el-container>
     <el-aside width="500px">
-      <div style="height: 900px;width: 100%; background-color: white">
+      <div style="height: 900px; background-color: white">
         <el-button type="primary" plain @click="restTime('ruleForm')" >申请调休</el-button>
           <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="margin-top: 50px">
             <el-form-item label="调休日期" prop="seleDate" >
-              <el-select v-model="ruleForm.seleDate" placeholder="请选择调休日期" style="width: 330px;">
-                <el-option v-for="(item,index) in list" :key="index" @click="fn(index)" :class="{active:ide ==index}" :value="item"></el-option>
+              <el-select v-model="ruleForm.seleDate" placeholder="请选择调休日期">
+                <el-option v-for="(item,index) in list" :key="index" @click="fn(index)"
+                           :class="{active:ide ==index}" :value="item"></el-option>
               </el-select>
             </el-form-item>
             <el-form-item label="调休时间" :rules="[{ required: true, message: '请选择调休时间', trigger: 'blur' }]" >
@@ -16,7 +17,7 @@
               </el-time-select>
             </el-form-item>
             <el-form-item label="排班" prop="region" style="width: 330px;">
-              <el-select v-model="ruleForm.region" placeholder="请选择活动区域">
+              <el-select v-model="ruleForm.region" placeholder="请选择事件">
                 <el-option label="调休" value="调休"></el-option>
               </el-select>
             </el-form-item>
@@ -84,7 +85,7 @@
          },
       doHandleMonth(month){
         var m = month;
-        if(month.toString().length == 1){
+        if(month.toString().length === 1){
           m = month;
         }
         return m;
@@ -136,6 +137,7 @@
             eDate7: this.fun_date(7),
           }
         }).then((res)=>{
+          this.tableData1 = [];
           for (let i = 0; i < res.data.length; i++) {
             this.tableData1.push(res.data[i])
           }
@@ -182,3 +184,8 @@
     }
   }
 </script>
+<style>
+  .el-select{
+    width: 330px;
+  }
+</style>
