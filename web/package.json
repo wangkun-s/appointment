@@ -17,7 +17,7 @@
     "@fullcalendar/timegrid": "^4.4.0",
     "@fullcalendar/vue": "^4.4.0",
     "ajv": "^6.12.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "comment": "0.0.2",
     "element-ui": "^2.13.1",
     "html2canvas": "^1.0.0-rc.5",
