@@ -16,7 +16,7 @@
     "@fullcalendar/moment": "^4.4.0",
     "@fullcalendar/timegrid": "^4.4.0",
     "@fullcalendar/vue": "^4.4.0",
-    "ajv": "^6.12.2",
+    "ajv": "^6.12.3",
     "axios": "^0.19.2",
     "comment": "0.0.2",
     "element-ui": "^2.13.1",
